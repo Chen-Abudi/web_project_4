@@ -1,0 +1,99 @@
+.profile {
+  max-width: 880px;
+  margin-top: 36.25px;
+  display: flex;
+  color: #ffffff;
+  margin-bottom: 46.25px;
+  align-items: center;
+  height: 120px;
+}
+
+.profile__container {
+  display: flex;
+}
+
+.profile__image {
+  max-width: 120px;
+  max-height: 120px;
+  /* padding: 3.75px 26.25px 3.75px 22.5px; */
+  border-radius: 50%;
+  margin-right: 30px;
+}
+
+.profile__info {
+  /* margin: 22px 0 21px 3.75px; */
+  margin: 22px 0 21px 0;
+}
+
+.profile__person {
+  display: flex;
+  gap: 18px;
+  align-items: flex-end;
+  margin-bottom: 16px;
+}
+
+.profile__name {
+  max-width: 373px;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 1.14;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.profile__edit-button {
+  background-color: transparent;
+  background-image: url("../images/edit-button.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: calc(9px + (10px / 5));
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  margin-bottom: 9px;
+  transition: opacity 0.3s ease-out;
+  cursor: pointer;
+  max-height: 24px;
+  max-width: 24px;
+}
+
+.profile__edit-button:hover {
+  opacity: 0.6;
+}
+
+.profile__description {
+  max-width: 415px;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  margin: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.profile__add-button {
+  background-image: url("../images/add-button.svg");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 22px 22px;
+  /* padding: 23px 73px; */
+  padding: calc(12px + (22px / 2)) calc(62px + (22px / 2));
+  border: solid 2px #fff;
+  border-radius: 2px;
+  box-sizing: border-box;
+  transition: opacity 0.3s ease-out;
+  cursor: pointer;
+  margin: 35px 0 35px auto;
+}
+
+.profile__add-button:hover {
+  opacity: 0.6;
+}

@@ -1,0 +1,63 @@
+.postcard {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  min-height: 367px;
+}
+
+.postcard__image {
+  width: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px 10px 0 0;
+  min-height: 286px;
+}
+
+.postcard__title-area {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 0 10px 10px;
+  gap: 8px;
+  padding: 25px 15px 24px 21px;
+}
+
+.postcard__title {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  color: #000;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.postcard__like-button {
+  background-image: url("../images/heart-icon.svg");
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-width: 21px;
+  min-height: 19px;
+  cursor: url("../images/pointer.svg"), pointer;
+}
+
+.postcard__like-button:hover {
+  opacity: 0.5;
+}
+
+.postcard__like-button_active {
+  background-image: url("../images/heart-icon_stuffed.svg");
+}

@@ -17,6 +17,24 @@
 
 @media screen and (min-width: 1281px) {
   .page {
-    margin: 45px auto 0 auto;
+    margin: 45px auto 0;
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .page {
+    margin: 45px auto 0;
+  }
+}
+
+@media screen and (max-width: 930px) {
+  .page {
+    margin: 45px 19px 0;
+  }
+}
+
+@media screen and (max-width: 730px) {
+  .page {
+    margin: 28px 0 0;
   }
 }

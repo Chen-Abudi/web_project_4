@@ -1,9 +1,9 @@
 .footer {
   max-width: 880px;
   color: #545454;
-  margin-top: 67px;
   display: flex;
   align-self: flex-start;
+  margin: 67px 762px 60px 200px;
 }
 
 .footer__copyrights {
@@ -15,4 +15,26 @@
   margin: 0;
   padding: 0;
   min-width: 318px;
+}
+
+@media screen and (max-width: 729px) {
+  .footer {
+    margin: 60px auto 45px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .footer {
+    margin: 50px 400px 36px 75px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .footer {
+    margin: 50px 19px 36px;
+  }
+
+  .footer__copyrights {
+    min-width: 282px;
+  }
 }

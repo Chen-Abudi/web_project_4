@@ -22,9 +22,9 @@
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 54px;
   justify-content: center;
-  padding: 34px;
+  padding: 34px 36px 36.51px;
   border-radius: 10px;
   position: relative;
   align-self: flex-start;
@@ -71,7 +71,7 @@
   }
 
   .popup__overlay {
-    width: 100%;
+    max-width: 282px;
     padding: 25px 22px;
     gap: 65px;
   }
@@ -79,6 +79,11 @@
   .popup__close-button {
     top: -49px;
     right: 7px;
+  }
+
+  .popup__title {
+    font-size: 18px;
+    line-height: 22px;
   }
 }
 
@@ -94,5 +99,11 @@
     height: 35px;
     margin-top: 0;
     margin-bottom: 13.62px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .popup__overlay {
+    gap: 76px;
   }
 }

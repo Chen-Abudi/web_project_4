@@ -100,7 +100,14 @@
 @media screen and (min-width: 730px) and (max-width: 916px) {
   .profile {
     width: 100%;
-    max-width: 700px;
+  }
+
+  .profile__info {
+    max-width: 358px;
+  }
+
+  .profile__edit-button {
+    margin-right: 15px;
   }
 }
 
@@ -132,7 +139,6 @@
     margin-top: 38.25px;
     margin-bottom: 36px;
     width: 100%;
-    /* gap: 33px; */
   }
 
   .profile__info {
@@ -150,6 +156,7 @@
     font-size: 22px;
     line-height: 27px;
     text-align: center;
+    max-width: 196px;
   }
 
   .profile__edit-button {

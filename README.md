@@ -5,6 +5,7 @@
 - Intro
 - Languages and Technologies have been used
 - Figma
+- Images
 - Possible Improvements
 - Deployed Project
 
@@ -30,6 +31,10 @@ All elements are designed to be displayed correctly on the popular screen size (
 **Figma**
 
 - [Link to the project in Figma](https://www.figma.com/file/SurN1jaeEQIhuZEDMhmWWf/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
+
+**Images**
+
+- [For more incredible images, you can check this site](https://unsplash.com/)
 
 ## Possible Improvements
 

@@ -44,4 +44,4 @@ All elements are designed to be displayed correctly on the popular screen size (
 
 ## Deployed Project
 
-- [Link to the project on GitHub pages] ()
+- [Link to the project on GitHub pages] (https://chen-abudi.github.io/web_project_4/)

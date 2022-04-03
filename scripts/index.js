@@ -43,10 +43,7 @@ for (let i = 0; i < likeButtons.length; i++) {
   }
   likeButton.addEventListener("click", toggleLike);
 }
-// function toggleLike() {
-//   likeButtons[0].classList.toggle(".postcard__like-button_active");
-// }
-// likeButtons[0].addEventListener("click", toggleLike);
+
 /// Adding the Event Listeners ///
 editProfileButton.addEventListener("click", openForm);
 saveButton.addEventListener("click", closeForm);

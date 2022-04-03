@@ -21,7 +21,7 @@ All elements are designed to be displayed correctly on the popular screen size (
 - CSS3
 - Responsive Layout
 - JavaScript
-- Flexbox and Grids and forms
+- Flexbox, Grids and forms
 - Media Queries
 - BEM File Structure
 - Animation

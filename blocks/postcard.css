@@ -2,7 +2,6 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  min-height: 367px;
 }
 
 .postcard__image {

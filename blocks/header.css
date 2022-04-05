@@ -15,13 +15,13 @@
   margin-bottom: 41px;
 }
 
-@media screen and (min-width: 731px) {
+/* @media screen and (min-width: 731px) {
   .header__logo {
     margin-left: 19px;
   }
-}
+} */
 
-@media screen and (max-width: 730px) {
+@media screen and (max-width: 890px) {
   .header__logo {
     margin-left: 38px;
   }

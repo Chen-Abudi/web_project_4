@@ -32,20 +32,21 @@ function replaceProfileInfo(event) {
   event.preventDefault();
   profileName.textContent = inputName.value;
   profileDescription.textContent = inputTitle.value;
+  popup.classList.remove("popup_receptive");
 }
 
 /// Making the like buttons functional by adding loop ///
-for (let i = 0; i < likeButtons.length; i++) {
-  let likeButton = likeButtons[i];
+// for (let i = 0; i < likeButtons.length; i++) {
+//   let likeButton = likeButtons[i];
 
-  function toggleLike() {
-    likeButton.classList.toggle("postcard__like-button_active");
-  }
-  likeButton.addEventListener("click", toggleLike);
-}
+//   function toggleLike() {
+//     likeButton.classList.toggle("postcard__like-button_active");
+//   }
+//   likeButton.addEventListener("click", toggleLike);
+// }
 
 /// Adding the Event Listeners ///
 editProfileButton.addEventListener("click", openForm);
-saveButton.addEventListener("click", closeForm);
+// saveButton.addEventListener("click", closeForm);
 closeButton.addEventListener("click", closeForm);
 form.addEventListener("submit", replaceProfileInfo);

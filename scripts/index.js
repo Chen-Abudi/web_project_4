@@ -34,7 +34,7 @@ const profileCloseButton = profileModal.querySelector(
 );
 
 const imageExCloseButton = imageExModal.querySelector(
-  ".popup__close-button_type_image_ex"
+  ".popup__close-button_type_image-ex"
 );
 
 const postcardCloseButton = addPostcardModal.querySelector(

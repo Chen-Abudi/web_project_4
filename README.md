@@ -1,4 +1,4 @@
-# Project 4: Around The U.S.
+# Project 4, 5: Around The U.S.
 
 ### Overview
 
@@ -6,6 +6,7 @@
 - Languages and Technologies have been used
 - Figma
 - Images
+- New Features
 - Possible Improvements
 - Deployed Project
 
@@ -30,11 +31,20 @@ All elements are designed to be displayed correctly on the popular screen size (
 
 **Figma**
 
-- [Link to the project in Figma](https://www.figma.com/file/SurN1jaeEQIhuZEDMhmWWf/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
+- [Link to the project in Figma : part 1](https://www.figma.com/file/SurN1jaeEQIhuZEDMhmWWf/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
+
+- [Link to the project in Figma : part 2](https://www.figma.com/file/m79HxYeZpOXRw0Tz2eZGOV/Sprint-5%3A-Around-The-U.S.-%7C-desktop-%2B-mobile?node-id=0%3A1)
 
 **Images**
 
 - [For more incredible images, you can check this site](https://unsplash.com/)
+
+## New Features
+
+- Added funcionality to the add button if the user wants to add new place.
+- Made the like button function.
+- Added the option to remove places.
+- Picture popup for images.
 
 ## Possible Improvements
 
@@ -43,9 +53,10 @@ All elements are designed to be displayed correctly on the popular screen size (
 - Additional animations.
 - Adding form validation.
 - Adding a counter to the like Buttons.
-- Adding functionality to the images so that by clicking on them, the images will open in bigger window.
 - Adding funcionality to change the profile image.
-- Adding funcionality to the add button if someone will want to add more places, or on the opposite to delete with popup window that checks if the user is sure.
+- Popup window to check if the user is sure to remove postcard.
+- Option to select postcards group to remove together.
+- Import/export postcards.
 
 ## Deployed Project
 

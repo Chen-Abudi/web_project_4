@@ -1,17 +1,45 @@
-/// Calling the elements that are needed ///
-const profile = document.querySelector(".profile");
+/// Calling form and its components ///
 const form = document.querySelector(".form");
 const saveButton = form.querySelector(".form__button");
+const inputName = form.querySelector(".form__input_type_profile-name");
+const inputTitle = form.querySelector(".form__input_type_profile-title");
 
-const editProfileButton = profile.querySelector(".profile__edit-button");
+/// Calling profile and its elements ///
+const profile = document.querySelector(".profile");
 const profileName = profile.querySelector(".profile__name");
 const profileDescription = profile.querySelector(".profile__description");
 
-const inputName = form.querySelector(".form__input[name='name']");
-const inputTitle = form.querySelector(".form__input[name='title']");
+/// Calling the profile buttons ///
+const editProfileButton = profile.querySelector(".profile__edit-button");
+const addPostcardButton = profile.querySelector(".profile__add-button");
 
+/// Calling popup and its components ///
 const popup = document.querySelector(".popup");
-const closeButton = popup.querySelector(".popup__close-button");
+const profileForm = document.querySelector(".popup__form_type_profile");
+const postcardForm = document.querySelector(".popup__form_type_add-postcard");
+const postcardName = postcardForm.querySelector(
+  ".form__input_type_postcard-name"
+);
+
+const postcardURL = postcardForm.querySelector(
+  ".form__input_type_postcard-url"
+);
+
+/// Adding modals and their elements ///
+const profileModal = document.querySelector(".popup_type_edit-profile");
+const addPostcardModal = document.querySelector(".popup_type_add-postcard");
+const imageExModal = document.querySelector(".popup_type_image-ex");
+const profileCloseButton = profileModal.querySelector(
+  ".popup__close-button_type_profile"
+);
+
+const imageExCloseButton = imageExModal.querySelector(
+  ".popup__close-button_type_image_ex"
+);
+
+const postcardCloseButton = addPostcardModal.querySelector(
+  ".popup__close-button_type_postcard"
+);
 
 /// Calling the postcards and their modifier ///
 const postcards = document.querySelector(".postcards");
@@ -93,65 +121,99 @@ const totalPostcards = [
   },
 ];
 
-const cardTemplate = document.querySelector("#postcard-template");
-
 /// Adding function for the postcards and their components ///
-function generateCards(postcards) {
-  postcards.forEach((postcard) => {
-    generateCard(postcard);
-  });
-}
-
-function generateCard(postcard) {
-  const cardElement = cardTemplate.content
+function generateCard(data) {
+  const postcardTemplate = document.querySelector("#postcard-template").content;
+  const postcardElement = postcardTemplate
     .querySelector(".postcard")
     .cloneNode(true);
-  const cardImage = cardElement.querySelector(".postcard__image");
-  cardImage.src = postcard.link;
-  cardImage.alt = `A colorful and magnificent view of ${postcard.name}`;
-  cardElement.querySelector(".postcard__title").textContent = postcard.name;
-  postcardsList.append(cardElement);
+  const postcardTitleElement =
+    postcardElement.querySelector(".postcard__title");
+  postcardTitleElement.textContent = data.name;
+  const postcardImage = postcardElement.querySelector(".postcard__image");
+  postcardImage.src = data.link;
+  postcardImage.alt = `A colorful and magnificent view of ${data.name}`;
 
-  /// Adding funcionality for the remove button ///
-  cardElement
+  ///// Adding eventListeners for the postcards and their components /////
+  postcardImage.addEventListener("click", () => exhibitImage(data));
+
+  /// Adding funcionality with eventListener for the remove button ///
+  postcardElement
     .querySelector(".postcard__remove-button")
     .addEventListener("click", () => {
-      const removeButton = cardElement.closest(".postcard");
-      removeButton.remove();
+      postcardElement.remove();
     });
 
-  /// Adding functionality for the like button ///
-  cardElement
+  /// Adding functionality with eventListener for the like button ///
+  postcardElement
     .querySelector(".postcard__like-button")
     .addEventListener("click", (evt) => {
       evt.target.classList.toggle("postcard__like-button_active");
     });
 
-  return cardElement;
+  return postcardElement;
 }
 
-generateCards(totalPostcards);
+function reciteCard(postcard, list) {
+  list.append(generateCard(postcard));
+}
+/// Generate initial and additional postcards with the recite function  ///
+totalPostcards.forEach((postcard) => reciteCard(postcard, postcardsList));
 
-/// Functions ///
-function openForm() {
-  inputName.value = profileName.textContent;
-  inputTitle.value = profileDescription.textContent;
+/// Adding functionality for the popup image exhibit ///
+function exhibitImage(postcard) {
+  const popupImage = imageExModal.querySelector(".popup__image");
+  const popupCaption = imageExModal.querySelector(".popup__caption");
+  popupImage.src = postcard.link;
+  popupImage.alt = `A colorful and magnificent view of ${postcard.name}`;
+  popupCaption.textContent = postcard.name;
+  openModal(imageExModal);
+}
+
+/// Functions for the popup windows ///
+function openModal(popup) {
   popup.classList.add("popup_receptive");
 }
 
-function closeForm() {
+function closeModal(popup) {
   popup.classList.remove("popup_receptive");
 }
 
+/// Function to change the profile info ///
 function replaceProfileInfo(event) {
   event.preventDefault();
   profileName.textContent = inputName.value;
   profileDescription.textContent = inputTitle.value;
-  popup.classList.remove("popup_receptive");
+  closeModal(profileModal);
+}
+/// Adding a function if someone wants to add a new postcard ///
+function addPostcard(event) {
+  event.preventDefault();
+  reciteCard(
+    { name: postcardName.value, link: postcardURL.value },
+    postcardsList
+  );
+  closeModal(addPostcardModal);
+  postcardForm.reset();
+}
+
+function fillProfileFormZone() {
+  inputName.value = profileName.textContent;
+  inputTitle.value = profileDescription.textContent;
 }
 
 /// Adding the Event Listeners ///
-editProfileButton.addEventListener("click", openForm);
-// saveButton.addEventListener("click", closeForm);
-closeButton.addEventListener("click", closeForm);
-form.addEventListener("submit", replaceProfileInfo);
+editProfileButton.addEventListener("click", () => {
+  fillProfileFormZone();
+  openModal(profileModal);
+});
+
+profileCloseButton.addEventListener("click", () => closeModal(profileModal));
+addPostcardButton.addEventListener("click", () => openModal(addPostcardModal));
+postcardCloseButton.addEventListener("click", () =>
+  closeModal(addPostcardModal)
+);
+imageExCloseButton.addEventListener("click", () => closeModal(imageExModal));
+
+profileForm.addEventListener("submit", replaceProfileInfo);
+postcardForm.addEventListener("submit", addPostcard);

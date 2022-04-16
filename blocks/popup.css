@@ -6,17 +6,20 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  display: none;
   justify-content: center;
   align-items: center;
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.4s ease-in-out;
 }
 
 .popup_receptive {
-  display: flex;
+  visibility: visible;
+  opacity: 1;
 }
 
 .popup__overlay {
-  transition: all 0.3s linear;
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -39,7 +42,7 @@
   height: 40px;
   align-self: flex-end;
   padding: 0;
-  transition: opacity 0.2s linear;
+  transition: all 0.4s linear;
   position: absolute;
   top: -40px;
   right: -40px;
@@ -47,6 +50,7 @@
 
 .popup__close-button:hover {
   opacity: 0.6;
+  transform: rotateY(180deg) rotate(90deg);
 }
 
 .popup__title {
@@ -56,6 +60,27 @@
   font-size: 24px;
   line-height: 29px;
   color: #000;
+  margin: 0;
+}
+
+.popup__overlay_type_image-exhibit {
+  background-color: transparent;
+  color: #ffffff;
+  gap: 10px;
+  padding: 0;
+}
+
+.popup__image {
+  width: 100%;
+  max-width: 75vw;
+  max-height: 75vh;
+}
+
+.popup__caption {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
   margin: 0;
 }
 
@@ -83,6 +108,17 @@
   }
 }
 
+.popup__overlay_type_image-exhibit {
+  max-width: 75vw;
+  gap: 10px;
+  padding: 0;
+}
+
+.popup__close-button_type_image_ex {
+  top: -40px;
+  right: -40px;
+}
+
 @media screen and (max-width: 425px) {
   .popup__overlay {
     width: 282px;
@@ -101,5 +137,17 @@
 @media screen and (max-width: 320px) {
   .popup__overlay {
     gap: 76px;
+  }
+
+  .popup__overlay_type_image-exhibit {
+    gap: 10px;
+    margin: 0;
+  }
+
+  .popup__close-button_type_image_ex {
+    right: -30px;
+    top: -30px;
+    width: 30px;
+    height: 30px;
   }
 }

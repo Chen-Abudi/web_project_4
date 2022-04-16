@@ -106,17 +106,17 @@
     font-size: 18px;
     line-height: 22px;
   }
-}
 
-.popup__overlay_type_image-exhibit {
-  max-width: 75vw;
-  gap: 10px;
-  padding: 0;
-}
+  .popup__overlay_type_image-exhibit {
+    max-width: 75vw;
+    gap: 10px;
+    padding: 0;
+  }
 
-.popup__close-button_type_image_ex {
-  top: -40px;
-  right: -40px;
+  .popup__close-button_type_image_ex {
+    top: -40px;
+    right: -40px;
+  }
 }
 
 @media screen and (max-width: 425px) {

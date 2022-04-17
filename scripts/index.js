@@ -1,20 +1,20 @@
-/// Calling form and its components ///
-const form = document.querySelector(".form");
-const saveButton = form.querySelector(".form__button");
-const inputName = form.querySelector(".form__input_type_profile-name");
-const inputTitle = form.querySelector(".form__input_type_profile-title");
+// Calling form and its components:
+const cardForm = document.querySelector(".form");
+const saveButton = cardForm.querySelector(".form__button");
+const inputName = cardForm.querySelector(".form__input_type_profile-name");
+const inputTitle = cardForm.querySelector(".form__input_type_profile-title");
 
-/// Calling profile and its elements ///
+// Calling profile and its elements:
 const profile = document.querySelector(".profile");
 const profileName = profile.querySelector(".profile__name");
 const profileDescription = profile.querySelector(".profile__description");
 
-/// Calling the profile buttons ///
+// Calling the profile buttons:
 const editProfileButton = profile.querySelector(".profile__edit-button");
 const addPostcardButton = profile.querySelector(".profile__add-button");
 
-/// Calling popup and its components ///
-const popup = document.querySelector(".popup");
+// Calling popup and its components:
+const popupForm = document.querySelector(".popup");
 const profileForm = document.querySelector(".popup__form_type_profile");
 const postcardForm = document.querySelector(".popup__form_type_add-postcard");
 const postcardName = postcardForm.querySelector(
@@ -25,7 +25,7 @@ const postcardURL = postcardForm.querySelector(
   ".form__input_type_postcard-url"
 );
 
-/// Adding modals and their elements ///
+// Adding modals and their elements:
 const profileModal = document.querySelector(".popup_type_edit-profile");
 const addPostcardModal = document.querySelector(".popup_type_add-postcard");
 const imageExModal = document.querySelector(".popup_type_image-ex");
@@ -41,12 +41,12 @@ const postcardCloseButton = addPostcardModal.querySelector(
   ".popup__close-button_type_postcard"
 );
 
-/// Calling the postcards and their modifier ///
+// Calling the postcards and their modifier:
 const postcards = document.querySelector(".postcards");
 const postcardsList = postcards.querySelector(".postcards__list");
 
-/// Adding initial and additional postcards ///
-const totalPostcards = [
+// Adding initial and additional postcards:
+const allPostcards = [
   {
     name: "Yosemite Valley",
     link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
@@ -121,9 +121,12 @@ const totalPostcards = [
   },
 ];
 
-/// Adding function for the postcards and their components ///
+allPostcards.reverse();
+
+const postcardTemplate = document.querySelector("#postcard-template").content;
+
+// Adding function for the postcards and their components:
 function generateCard(data) {
-  const postcardTemplate = document.querySelector("#postcard-template").content;
   const postcardElement = postcardTemplate
     .querySelector(".postcard")
     .cloneNode(true);
@@ -134,17 +137,18 @@ function generateCard(data) {
   postcardImage.src = data.link;
   postcardImage.alt = `A colorful and magnificent view of ${data.name}`;
 
-  ///// Adding eventListeners for the postcards and their components /////
+  // Adding eventListeners for the postcards and their components:
   postcardImage.addEventListener("click", () => exhibitImage(data));
 
-  /// Adding funcionality with eventListener for the remove button ///
-  postcardElement
-    .querySelector(".postcard__remove-button")
-    .addEventListener("click", () => {
-      postcardElement.remove();
-    });
+  // Adding funcionality with eventListener for the remove button:
+  const postcardRemoveButton = postcardElement.querySelector(
+    ".postcard__remove-button"
+  );
+  postcardRemoveButton.addEventListener("click", () => {
+    postcardElement.remove();
+  });
 
-  /// Adding functionality with eventListener for the like button ///
+  // Adding functionality with eventListener for the like button:
   postcardElement
     .querySelector(".postcard__like-button")
     .addEventListener("click", (evt) => {
@@ -155,12 +159,12 @@ function generateCard(data) {
 }
 
 function reciteCard(postcard, list) {
-  list.append(generateCard(postcard));
+  list.prepend(generateCard(postcard));
 }
-/// Generate initial and additional postcards with the recite function  ///
-totalPostcards.forEach((postcard) => reciteCard(postcard, postcardsList));
+// Generate initial and additional postcards with the recite function:
+allPostcards.forEach((postcard) => reciteCard(postcard, postcardsList));
 
-/// Adding functionality for the popup image exhibit ///
+// Adding functionality for the popup image exhibit:
 function exhibitImage(postcard) {
   const popupImage = imageExModal.querySelector(".popup__image");
   const popupCaption = imageExModal.querySelector(".popup__caption");
@@ -170,7 +174,7 @@ function exhibitImage(postcard) {
   openModal(imageExModal);
 }
 
-/// Functions for the popup windows ///
+// Functions for the popup windows:
 function openModal(popup) {
   popup.classList.add("popup_receptive");
 }
@@ -179,14 +183,14 @@ function closeModal(popup) {
   popup.classList.remove("popup_receptive");
 }
 
-/// Function to change the profile info ///
+// Function to change the profile info:
 function replaceProfileInfo(event) {
   event.preventDefault();
   profileName.textContent = inputName.value;
   profileDescription.textContent = inputTitle.value;
   closeModal(profileModal);
 }
-/// Adding a function if someone wants to add a new postcard ///
+// Adding a function if the user wants to add a new postcard:
 function addPostcard(event) {
   event.preventDefault();
   reciteCard(
@@ -202,7 +206,7 @@ function fillProfileFormZone() {
   inputTitle.value = profileDescription.textContent;
 }
 
-/// Adding the Event Listeners ///
+// Adding the Event Listeners:
 editProfileButton.addEventListener("click", () => {
   fillProfileFormZone();
   openModal(profileModal);

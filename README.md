@@ -52,6 +52,7 @@ All elements are designed to be displayed correctly on the popular screen size (
 - Picture popup for images.
 - Form Validation.
 - Resets Form Validation after submitting.
+- Closing popup windows from overlay, or with the Escape key.
 
 ## Possible Improvements
 

@@ -179,7 +179,6 @@ function reciteCard(postcard, list) {
 allPostcards.forEach((postcard) => reciteCard(postcard, postcardsList));
 // ────────────────────────────────────────────────────────────────────────────
 
-// TESTING
 function notExhibitModal(popup) {
   return !popup.classList.contains("popup_type_image-ex") ? true : false;
 }

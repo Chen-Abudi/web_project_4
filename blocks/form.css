@@ -3,13 +3,11 @@
   display: flex;
   flex-direction: column;
   width: 358px;
-  gap: 48px;
 }
 
 .form__fieldset {
   padding: 0;
   border: none;
-  gap: 29.74px;
   display: flex;
   flex-direction: column;
 }
@@ -22,10 +20,30 @@
   border-left: 0;
   font-size: 14px;
   line-height: 17px;
+  margin-bottom: 5px;
+  color: #000;
 }
 
-.form__input::placeholder {
-  color: #000;
+.form__input-error {
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 15px;
+  font-size: 12px;
+  color: #ff0000;
+  text-decoration: none;
+  visibility: hidden;
+  opacity: 0;
+  margin-bottom: 13px;
+}
+
+.form__input-error_visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.form__input_type_error {
+  border-bottom: 1px solid #ff0000;
 }
 
 .form__button {
@@ -43,10 +61,19 @@
   height: 50.15px;
   padding: 13.66px 124px 18.49px 125px;
   transition: background-color ease-in-out 0.4s;
+  margin-top: calc(31.34px - 13px);
 }
 
 .form__button:hover {
   background-color: rgba(0, 0, 0, 0.8);
+}
+
+.form__button_disabled,
+.form__button_disabled:hover {
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.2);
+  cursor: url("../images/pointer.svg"), pointer;
 }
 
 @media screen and (max-width: 524px) {
@@ -69,10 +96,6 @@
 }
 
 @media screen and (max-width: 320px) {
-  .form {
-    gap: 46px;
-  }
-
   .form__input {
     padding-bottom: 9px;
   }

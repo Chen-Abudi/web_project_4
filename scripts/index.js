@@ -1,19 +1,24 @@
-// Calling form and its components:
+import { config, toggleButton, errorHiddenOnClose } from "./validate.js";
+
+// Form and Its Components:
 const cardForm = document.querySelector(".form");
 const saveButton = cardForm.querySelector(".form__button");
 const inputName = cardForm.querySelector(".form__input_type_profile-name");
 const inputTitle = cardForm.querySelector(".form__input_type_profile-title");
+// ────────────────────────────────────────────────────────────────────────────
 
-// Calling profile and its elements:
+// Profile and Its Elements:
 const profile = document.querySelector(".profile");
 const profileName = profile.querySelector(".profile__name");
 const profileDescription = profile.querySelector(".profile__description");
+// ────────────────────────────────────────────────────────────────────────────
 
-// Calling the profile buttons:
+// The Profile Buttons:
 const editProfileButton = profile.querySelector(".profile__edit-button");
 const addPostcardButton = profile.querySelector(".profile__add-button");
+// ────────────────────────────────────────────────────────────────────────────
 
-// Calling popup and its components:
+// Popup and Its Components:
 const popupForm = document.querySelector(".popup");
 const profileForm = document.querySelector(".popup__form_type_profile");
 const postcardForm = document.querySelector(".popup__form_type_add-postcard");
@@ -24,8 +29,9 @@ const postcardName = postcardForm.querySelector(
 const postcardURL = postcardForm.querySelector(
   ".form__input_type_postcard-url"
 );
+// ────────────────────────────────────────────────────────────────────────────
 
-// Adding modals and their elements:
+// Modals and Their Elements:
 const profileModal = document.querySelector(".popup_type_edit-profile");
 const addPostcardModal = document.querySelector(".popup_type_add-postcard");
 const imageExModal = document.querySelector(".popup_type_image-ex");
@@ -40,12 +46,16 @@ const imageExCloseButton = imageExModal.querySelector(
 const postcardCloseButton = addPostcardModal.querySelector(
   ".popup__close-button_type_postcard"
 );
+// ────────────────────────────────────────────────────────────────────────────
 
-// Calling the postcards and their modifier:
+// Postcards and Their Element:
 const postcards = document.querySelector(".postcards");
 const postcardsList = postcards.querySelector(".postcards__list");
+// ────────────────────────────────────────────────────────────────────────────
 
-// Adding initial and additional postcards:
+// ────────────────────────────────────────────────────────────────────────────
+// ~~~~~~~~~~~~~~~ Adding Initial and Additional POSTCARDS: ~~~~~~~~~~~~~~~~~~~
+// ────────────────────────────────────────────────────────────────────────────
 const allPostcards = [
   {
     name: "Yosemite Valley",
@@ -122,10 +132,13 @@ const allPostcards = [
 ];
 
 allPostcards.reverse();
+// ────────────────────────────────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────────────────
+// --------- Adding Function For Postcards and Its Components: ------------
+// ────────────────────────────────────────────────────────────────────────────
 const postcardTemplate = document.querySelector("#postcard-template").content;
 
-// Adding function for the postcards and their components:
 function generateCard(data) {
   const postcardElement = postcardTemplate
     .querySelector(".postcard")
@@ -137,10 +150,10 @@ function generateCard(data) {
   postcardImage.src = data.link;
   postcardImage.alt = `A colorful and magnificent view of ${data.name}`;
 
-  // Adding eventListeners for the postcards and their components:
+  // EventListeners For Postcards and Their Components:
   postcardImage.addEventListener("click", () => exhibitImage(data));
 
-  // Adding funcionality with eventListener for the remove button:
+  // Funcionality with EventListener For the Remove Button:
   const postcardRemoveButton = postcardElement.querySelector(
     ".postcard__remove-button"
   );
@@ -148,7 +161,7 @@ function generateCard(data) {
     postcardElement.remove();
   });
 
-  // Adding functionality with eventListener for the like button:
+  // Functionality with EventListener For the Like Button:
   postcardElement
     .querySelector(".postcard__like-button")
     .addEventListener("click", (evt) => {
@@ -157,14 +170,33 @@ function generateCard(data) {
 
   return postcardElement;
 }
+// ────────────────────────────────────────────────────────────────────────────
 
 function reciteCard(postcard, list) {
   list.prepend(generateCard(postcard));
 }
-// Generate initial and additional postcards with the recite function:
+// Generate Initial and Additional Postcards With the Recite Function:
 allPostcards.forEach((postcard) => reciteCard(postcard, postcardsList));
+// ────────────────────────────────────────────────────────────────────────────
 
-// Adding functionality for the popup image exhibit:
+// TESTING
+function notExhibitModal(popup) {
+  return !popup.classList.contains("popup_type_image-ex") ? true : false;
+}
+
+function examineAddAndEditModals(popup) {
+  if (notExhibitModal(popup)) {
+    const { inputSelector, submitButtonSelector } = config;
+    const inputList = [...popup.querySelectorAll(inputSelector)];
+    const button = popup.querySelector(submitButtonSelector);
+
+    toggleButton(inputList, button, config);
+  }
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+
+// ───────── Functionality For the Popup Image Exhibit: ─────────
 function exhibitImage(postcard) {
   const popupImage = imageExModal.querySelector(".popup__image");
   const popupCaption = imageExModal.querySelector(".popup__caption");
@@ -173,24 +205,57 @@ function exhibitImage(postcard) {
   popupCaption.textContent = postcard.name;
   openModal(imageExModal);
 }
+// ────────────────────────────────────────────────────────────────────────────
 
-// Functions for the popup windows:
+// ────────────────────────────────────────────────────────────────────────────
+// --- FUNCTIONS for the POPUP Windows and EVENT LISTENERS --------------------
+// ------------ For Closing With the ESCAPE Key: ------------------------------
+// ────────────────────────────────────────────────────────────────────────────
 function openModal(popup) {
   popup.classList.add("popup_receptive");
+  popup.addEventListener("mousedown", closeFromOverlay);
+  window.addEventListener("keydown", escapeClosePopup);
+
+  // Inputs will be checked after they'll be populated
+  examineAddAndEditModals(popup);
 }
 
 function closeModal(popup) {
   popup.classList.remove("popup_receptive");
-}
+  popup.removeEventListener("mousedown", closeFromOverlay);
+  window.removeEventListener("keydown", escapeClosePopup);
 
-// Function to change the profile info:
+  notExhibitModal(popup) && errorHiddenOnClose(popup);
+}
+// ────────────────────────────────────────────────────────────────────────────
+
+// ────── CLOSING the POPUP Windows From the OVERLAY ────────────────
+const closeFromOverlay = (evt) => {
+  const openedModal = document.querySelector(".popup_receptive");
+  evt.target === evt.currentTarget ? closeModal(openedModal) : false;
+};
+
+// ────────────────────────────────────────────────────────────────────────────
+
+// ─────────────── The ESCAPE Key Closing the POPUP Windows ──────────────────
+const escapeClosePopup = (evt) => {
+  const openedModal = document.querySelector(".popup_receptive");
+  evt.key === "Escape" ? closeModal(openedModal) : false;
+};
+
+// ────────────────────────────────────────────────────────────────────────────
+
+// Function For Changing the Profile Info:
 function replaceProfileInfo(event) {
   event.preventDefault();
   profileName.textContent = inputName.value;
   profileDescription.textContent = inputTitle.value;
   closeModal(profileModal);
 }
-// Adding a function if the user wants to add a new postcard:
+
+// ────────────────────────────────────────────────────────────────────────────
+
+// Function For Adding A New Postcard:
 function addPostcard(event) {
   event.preventDefault();
   reciteCard(
@@ -200,19 +265,25 @@ function addPostcard(event) {
   closeModal(addPostcardModal);
   postcardForm.reset();
 }
+// ────────────────────────────────────────────────────────────────────────────
 
+// ───── Filling Content For the Profile Form ─────
 function fillProfileFormZone() {
   inputName.value = profileName.textContent;
   inputTitle.value = profileDescription.textContent;
 }
 
-// Adding the Event Listeners:
+// ────────────────────────────────────────────────────────────────────────────
+// ------------------- Adding the Necessary Event Listeners: ------------------
+// ────────────────────────────────────────────────────────────────────────────
+
 editProfileButton.addEventListener("click", () => {
   fillProfileFormZone();
   openModal(profileModal);
 });
 
 profileCloseButton.addEventListener("click", () => closeModal(profileModal));
+
 addPostcardButton.addEventListener("click", () => openModal(addPostcardModal));
 postcardCloseButton.addEventListener("click", () =>
   closeModal(addPostcardModal)

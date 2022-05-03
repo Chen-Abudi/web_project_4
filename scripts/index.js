@@ -183,16 +183,10 @@ function reciteCard(postcard, list) {
 allPostcards.forEach((postcard) => reciteCard(postcard, postcardsList));
 // ────────────────────────────────────────────────────────────────────────────
 
-<<<<<<< HEAD
-function notExhibitModal(popup) {
-  return !popup.classList.contains("popup_type_image-ex") ? true : false;
-}
-=======
 function toggleFormModalButton(popup) {
   const { inputSelector, submitButtonSelector } = config;
   const inputList = [...popup.querySelectorAll(inputSelector)];
   const button = popup.querySelector(submitButtonSelector);
->>>>>>> develop
 
   toggleButton(inputList, button, config);
 }

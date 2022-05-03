@@ -1,4 +1,9 @@
-import { config, toggleButton, resetValidation } from "./validate.js";
+import {
+  config,
+  toggleButton,
+  resetValidation,
+  disableSubmitButton,
+} from "./validate.js";
 
 // Form and Its Components:
 const cardForm = document.querySelector(".form");
@@ -54,6 +59,10 @@ const postcardCloseButton = addPostcardModal.querySelector(
 const postcards = document.querySelector(".postcards");
 const postcardsList = postcards.querySelector(".postcards__list");
 // ────────────────────────────────────────────────────────────────────────────
+
+const addPostcardSubmitButton = postcardForm.querySelector(
+  config.submitButtonSelector
+);
 
 /* ────────────────────────────────────────────────────────────────────────────
    ~~~~~~~~~~~~~~~ Adding Initial and Additional POSTCARDS: ~~~~~~~~~~~~~~~~~~~
@@ -257,6 +266,7 @@ function addPostcard(event) {
   );
   closeModal(addPostcardModal);
   postcardForm.reset();
+  disableSubmitButton(addPostcardSubmitButton, config);
 }
 // ────────────────────────────────────────────────────────────────────────────
 
@@ -274,17 +284,16 @@ editProfileButton.addEventListener("click", () => {
   openModal(profileModal);
   fillProfileFormZone();
   toggleFormModalButton(profileModal);
+  resetValidation(profileModal);
 });
 
 profileCloseButton.addEventListener("click", () => closeModal(profileModal));
 
 addPostcardButton.addEventListener("click", () => {
   openModal(addPostcardModal);
-  toggleFormModalButton(addPostcardModal);
   resetValidation(addPostcardModal);
 });
 
-// addPostcardButton.addEventListener("click", () => openModal(addPostcardModal));
 postcardCloseButton.addEventListener("click", () =>
   closeModal(addPostcardModal)
 );

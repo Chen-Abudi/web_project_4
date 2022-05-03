@@ -46,7 +46,7 @@ const enableSubmitButton = (button, config) => {
   button.classList.remove(config.inactiveButtonClass);
 };
 
-const disableSubmitButton = (button, config) => {
+export const disableSubmitButton = (button, config) => {
   button.disabled = true;
   button.classList.add(config.inactiveButtonClass);
 };

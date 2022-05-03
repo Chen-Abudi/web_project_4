@@ -73,7 +73,7 @@
   background-color: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.2);
   color: rgba(0, 0, 0, 0.2);
-  cursor: url("../images/pointer.svg"), pointer;
+  cursor: default;
 }
 
 @media screen and (max-width: 524px) {

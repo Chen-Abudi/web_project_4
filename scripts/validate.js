@@ -1,6 +1,6 @@
-// ────────────────────────────────────────────────────────────────────────────
-// ------------------------ FORM VALIDATION: ----------------------------------
-// ────────────────────────────────────────────────────────────────────────────
+/* ────────────────────────────────────────────────────────────────────────────
+   ------------------------ FORM VALIDATION: ----------------------------------
+   ──────────────────────────────────────────────────────────────────────────── */
 
 // ──── DISPLAYING the ERROR MESSAGE For the Necessary INPUTS: ────────────────
 const showInputError = (form, input, errorMsg, config) => {
@@ -54,15 +54,17 @@ const disableSubmitButton = (button, config) => {
 
 // ─────────────── MODIFY the Button Activity: ────────────────────────────────
 export const toggleButton = (inputList, button, config) => {
-  hasValidInput(inputList)
-    ? disableSubmitButton(button, config)
-    : enableSubmitButton(button, config);
+  if (hasValidInput(inputList)) {
+    disableSubmitButton(button, config);
+  } else {
+    enableSubmitButton(button, config);
+  }
 };
 // ────────────────────────────────────────────────────────────────────────────
 
-// ────────────────────────────────────────────────────────────────────────────
-// ---------- Setting EVENT LISTENERS For the Necessary INPUTS: ---------------
-// ────────────────────────────────────────────────────────────────────────────
+/* ────────────────────────────────────────────────────────────────────────────
+   ---------- Setting EVENT LISTENERS For the Necessary INPUTS: ---------------
+   ──────────────────────────────────────────────────────────────────────────── */
 const setEventListeners = (form, config) => {
   // Finding all the fields inside the form and making an array from them
   const inputList = [...form.querySelectorAll(config.inputSelector)];
@@ -95,7 +97,7 @@ const enableValidation = (config) => {
 //─────────────────────────────────────────────────────────────────────────────
 
 // ──────────── After Submitting, the FORM VALIDATION RESETS: ──────────────────
-export const errorHiddenOnClose = (popup) => {
+export const resetValidation = (popup) => {
   const { formSelector, inputSelector } = config;
   const form = popup.querySelector(formSelector);
   const inputList = [...form.querySelectorAll(inputSelector)];
@@ -105,9 +107,9 @@ export const errorHiddenOnClose = (popup) => {
 };
 //─────────────────────────────────────────────────────────────────────────────
 
-// ────────────────────────────────────────────────────────────────────────────
-// ------- This Object Contains the Necessary Elements: -----------------------
-// ────────────────────────────────────────────────────────────────────────────
+/* ────────────────────────────────────────────────────────────────────────────
+   ------- This Object Contains the Necessary Elements: -----------------------
+   ──────────────────────────────────────────────────────────────────────────── */
 
 export const config = {
   formSelector: ".popup__form",

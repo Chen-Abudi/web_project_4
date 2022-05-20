@@ -1,9 +1,19 @@
-import {
-  config,
-  toggleButton,
-  resetValidation,
-  disableSubmitButton,
-} from "./validate.js";
+import Postcard from "./Card.js";
+import FormValidator from "./FormValidator.js";
+import { openModal, closeModal, imageExModal } from "./utils.js";
+
+/* ────────────────────────────────────────────────────────────────────────────
+   ------- This Object Contains the Necessary Elements: -----------------------
+   ──────────────────────────────────────────────────────────────────────────── */
+const config = {
+  formSelector: ".popup__form",
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__button",
+  inactiveButtonClass: "form__button_disabled",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__input-error_visible",
+};
+// ────────────────────────────────────────────────────────────────────────────
 
 // Form and Its Components:
 const cardForm = document.querySelector(".form");
@@ -29,6 +39,13 @@ const addPostcardButton = profile.querySelector(".profile__add-button");
 const popupForm = document.querySelector(".popup");
 const profileForm = document.querySelector(".popup__form_type_profile");
 const postcardForm = document.querySelector(".popup__form_type_add-postcard");
+
+const profileFormValidator = new FormValidator(config, profileForm);
+const postcardFormValidator = new FormValidator(config, postcardForm);
+
+profileFormValidator.enableValidation();
+postcardFormValidator.enableValidation();
+
 const postcardName = postcardForm.querySelector(
   ".form__input_type_postcard-name"
 );
@@ -41,7 +58,6 @@ const postcardURL = postcardForm.querySelector(
 // Modals and Their Elements:
 const profileModal = document.querySelector(".popup_type_edit-profile");
 const addPostcardModal = document.querySelector(".popup_type_add-postcard");
-const imageExModal = document.querySelector(".popup_type_image-ex");
 const profileCloseButton = profileModal.querySelector(
   ".popup__close-button_type_profile"
 );
@@ -59,10 +75,6 @@ const postcardCloseButton = addPostcardModal.querySelector(
 const postcards = document.querySelector(".postcards");
 const postcardsList = postcards.querySelector(".postcards__list");
 // ────────────────────────────────────────────────────────────────────────────
-
-const addPostcardSubmitButton = postcardForm.querySelector(
-  config.submitButtonSelector
-);
 
 /* ────────────────────────────────────────────────────────────────────────────
    ~~~~~~~~~~~~~~~ Adding Initial and Additional POSTCARDS: ~~~~~~~~~~~~~~~~~~~
@@ -145,112 +157,19 @@ const allPostcards = [
 allPostcards.reverse();
 // ────────────────────────────────────────────────────────────────────────────
 
-/* ────────────────────────────────────────────────────────────────────────────
-   --------- Adding Function For Postcards and Its Components: ----------------
-   ──────────────────────────────────────────────────────────────────────────── */
-const postcardTemplate = document.querySelector("#postcard-template").content;
-
-function generateCard(data) {
-  const postcardElement = postcardTemplate
-    .querySelector(".postcard")
-    .cloneNode(true);
-  const postcardTitleElement =
-    postcardElement.querySelector(".postcard__title");
-  postcardTitleElement.textContent = data.name;
-  const postcardImage = postcardElement.querySelector(".postcard__image");
-  postcardImage.src = data.link;
-  postcardImage.alt = `A colorful and magnificent view of ${data.name}`;
-
-  // EventListeners For Postcards and Their Components:
-  postcardImage.addEventListener("click", () => exhibitImage(data));
-
-  // Funcionality with EventListener For the Remove Button:
-  const postcardRemoveButton = postcardElement.querySelector(
-    ".postcard__remove-button"
-  );
-  postcardRemoveButton.addEventListener("click", () => {
-    postcardElement.remove();
-  });
-
-  // Functionality with EventListener For the Like Button:
-  const postcardLikeButton = postcardElement.querySelector(
-    ".postcard__like-button"
-  );
-
-  postcardLikeButton.addEventListener("click", (evt) => {
-    evt.target.classList.toggle("postcard__like-button_active");
-  });
-
-  return postcardElement;
-}
-// ────────────────────────────────────────────────────────────────────────────
+const templatePostcardSelector = "#postcard-template";
 
 function reciteCard(postcard, list) {
-  list.prepend(generateCard(postcard));
+  const postcardListItem = new Postcard(postcard, templatePostcardSelector);
+  list.prepend(postcardListItem.generateCard(postcard));
 }
 // Generate Initial and Additional Postcards With the Recite Function:
 allPostcards.forEach((postcard) => reciteCard(postcard, postcardsList));
 // ────────────────────────────────────────────────────────────────────────────
 
-function toggleFormModalButton(popup) {
-  const { inputSelector, submitButtonSelector } = config;
-  const inputList = [...popup.querySelectorAll(inputSelector)];
-  const button = popup.querySelector(submitButtonSelector);
-
-  toggleButton(inputList, button, config);
-}
-
-// ────────────────────────────────────────────────────────────────────────────
-
-// ───────── Functionality For the Popup Image Exhibit: ─────────
-function exhibitImage(postcard) {
-  const popupImage = imageExModal.querySelector(".popup__image");
-  const popupCaption = imageExModal.querySelector(".popup__caption");
-  popupImage.src = postcard.link;
-  popupImage.alt = `A colorful and magnificent view of ${postcard.name}`;
-  popupCaption.textContent = postcard.name;
-  openModal(imageExModal);
-}
-// ────────────────────────────────────────────────────────────────────────────
-
-/* ────────────────────────────────────────────────────────────────────────────
-   --- FUNCTIONS for the POPUP Windows and EVENT LISTENERS --------------------
-   ----- For Closing With the ESCAPE Key or From Overlay: ---------------------
-   ──────────────────────────────────────────────────────────────────────────── */
-function openModal(popup) {
-  popup.classList.add("popup_receptive");
-  popup.addEventListener("mousedown", closeFromOverlay);
-  window.addEventListener("keydown", handleCloseByEscape);
-}
-
-function closeModal(popup) {
-  popup.classList.remove("popup_receptive");
-  popup.removeEventListener("mousedown", closeFromOverlay);
-  window.removeEventListener("keydown", handleCloseByEscape);
-}
-// ────────────────────────────────────────────────────────────────────────────
-
-// ────── CLOSING the POPUP Windows From the OVERLAY ────────────────
-const closeFromOverlay = (evt) => {
-  if (evt.target === evt.currentTarget) {
-    const openedModal = document.querySelector(".popup_receptive");
-    closeModal(openedModal);
-  }
-};
-// ────────────────────────────────────────────────────────────────────────────
-
-// ─────────────── The ESCAPE Key Closing the POPUP Windows ──────────────────
-const handleCloseByEscape = (evt) => {
-  if (evt.key === "Escape") {
-    const openedModal = document.querySelector(".popup_receptive");
-    closeModal(openedModal);
-  }
-};
-// ────────────────────────────────────────────────────────────────────────────
-
 // Function For Changing the Profile Info:
-function handleProfileFormSubmit(event) {
-  event.preventDefault();
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
   profileName.textContent = inputCardName.value;
   profileDescription.textContent = inputCardTitle.value;
   closeModal(profileModal);
@@ -258,15 +177,14 @@ function handleProfileFormSubmit(event) {
 // ────────────────────────────────────────────────────────────────────────────
 
 // Function For Adding A New Postcard:
-function addPostcard(event) {
-  event.preventDefault();
+function addPostcard(evt) {
+  evt.preventDefault();
   reciteCard(
     { name: postcardName.value, link: postcardURL.value },
     postcardsList
   );
   closeModal(addPostcardModal);
   postcardForm.reset();
-  disableSubmitButton(addPostcardSubmitButton, config);
 }
 // ────────────────────────────────────────────────────────────────────────────
 
@@ -275,23 +193,25 @@ function fillProfileFormZone() {
   inputCardName.value = profileName.textContent;
   inputCardTitle.value = profileDescription.textContent;
 }
+// ────────────────────────────────────────────────────────────────────────────
 
 /* ────────────────────────────────────────────────────────────────────────────
    ------------------- Adding the Necessary Event Listeners: ------------------
    ──────────────────────────────────────────────────────────────────────────── */
-
 editProfileButton.addEventListener("click", () => {
   openModal(profileModal);
   fillProfileFormZone();
-  toggleFormModalButton(profileModal);
-  resetValidation(profileModal);
+
+  profileFormValidator.resetValidation();
 });
 
 profileCloseButton.addEventListener("click", () => closeModal(profileModal));
 
 addPostcardButton.addEventListener("click", () => {
+  postcardFormValidator.resetValidation();
   openModal(addPostcardModal);
-  resetValidation(addPostcardModal);
+
+  postcardForm.reset();
 });
 
 postcardCloseButton.addEventListener("click", () =>
@@ -299,5 +219,9 @@ postcardCloseButton.addEventListener("click", () =>
 );
 imageExCloseButton.addEventListener("click", () => closeModal(imageExModal));
 
-profileForm.addEventListener("submit", handleProfileFormSubmit);
+profileForm.addEventListener("submit", (evt) => {
+  handleProfileFormSubmit(evt);
+  closeModal(profileModal);
+});
+
 postcardForm.addEventListener("submit", addPostcard);

@@ -225,3 +225,4 @@ profileForm.addEventListener("submit", (evt) => {
 });
 
 postcardForm.addEventListener("submit", addPostcard);
+// ────────────────────────────────────────────────────────────────────────────

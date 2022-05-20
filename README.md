@@ -1,4 +1,4 @@
-# Project 4, 5, 6: Around The U.S.
+# Project 4, 5, 6, 7: Around The U.S.
 
 ### Overview
 
@@ -25,6 +25,8 @@ All elements are designed to be displayed correctly on the popular screen size (
 - JavaScript
 - Form Validation
 - Import/Export Modules
+- OOP (Object-Oriented-Programming) - Encapsulation, Inheritance, Polymorphism and Interfaces
+- Modular Javascript
 - DOM Manipulation
 - Flexbox, Grids and forms
 - Media Queries
@@ -53,6 +55,7 @@ All elements are designed to be displayed correctly on the popular screen size (
 - Form Validation.
 - Resets Form Validation after submitting.
 - Closing popup windows from overlay, or with the Escape key.
+- Refactor and Separate JS code into modules using OOP.
 
 ## Possible Improvements
 

@@ -1,4 +1,4 @@
-import Postcard from "./Card.js";
+import { Card } from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import { openModal, closeModal, imageExModal } from "./utils.js";
 
@@ -17,7 +17,6 @@ const config = {
 
 // Form and Its Components:
 const cardForm = document.querySelector(".form");
-const saveCardButton = cardForm.querySelector(".form__button");
 const inputCardName = cardForm.querySelector(".form__input_type_profile-name");
 const inputCardTitle = cardForm.querySelector(
   ".form__input_type_profile-title"
@@ -36,7 +35,6 @@ const addPostcardButton = profile.querySelector(".profile__add-button");
 // ────────────────────────────────────────────────────────────────────────────
 
 // Popup and Its Components:
-const popupForm = document.querySelector(".popup");
 const profileForm = document.querySelector(".popup__form_type_profile");
 const postcardForm = document.querySelector(".popup__form_type_add-postcard");
 
@@ -160,7 +158,7 @@ allPostcards.reverse();
 const templatePostcardSelector = "#postcard-template";
 
 function reciteCard(postcard, list) {
-  const postcardListItem = new Postcard(postcard, templatePostcardSelector);
+  const postcardListItem = new Card(postcard, templatePostcardSelector);
   list.prepend(postcardListItem.generateCard(postcard));
 }
 // Generate Initial and Additional Postcards With the Recite Function:

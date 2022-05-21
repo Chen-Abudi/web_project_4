@@ -1,7 +1,7 @@
 import { openModal, imageExModal, popupImage, popupCaption } from "./utils.js";
 
 // ────────── Postcard Class ─────────────────────────────────────────────────────
-class Postcard {
+class Card {
   constructor({ name, link }, templatePostcardSelector) {
     this._name = name;
     this._link = link;
@@ -76,4 +76,4 @@ class Postcard {
   // ────────────────────────────────────────────────────────────────────────────
 }
 
-export default Postcard;
+export default Card;

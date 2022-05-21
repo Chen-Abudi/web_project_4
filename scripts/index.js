@@ -1,4 +1,4 @@
-import Postcard from "./card.js";
+import Postcard from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import { openModal, closeModal, imageExModal } from "./utils.js";
 

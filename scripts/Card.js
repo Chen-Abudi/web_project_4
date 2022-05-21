@@ -1,4 +1,8 @@
-import { openModal, imageExModal, popupImage, popupCaption } from "./utils.js";
+import { openModal } from "./utils.js";
+
+export const imageExModal = document.querySelector(".popup_type_image-ex");
+const popupImage = imageExModal.querySelector(".popup__image");
+const popupCaption = imageExModal.querySelector(".popup__caption");
 
 // ────────── Postcard Class ─────────────────────────────────────────────────────
 export class Card {
@@ -23,6 +27,7 @@ export class Card {
   // ────────── Postcard Remove Button Function ─────────────────────────────────
   _handleRemoveButton = () => {
     this._postcardListItem.remove();
+    this._removeButton.removeEventListener("click", this._handleRemoveButton);
   };
   // ────────────────────────────────────────────────────────────────────────────
 

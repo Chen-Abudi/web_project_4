@@ -1,6 +1,6 @@
-import { Card } from "./Card.js";
+import { Card, imageExModal } from "./Card.js";
 import FormValidator from "./FormValidator.js";
-import { openModal, closeModal, imageExModal } from "./utils.js";
+import { openModal, closeModal } from "./utils.js";
 
 /* ────────────────────────────────────────────────────────────────────────────
    ------- This Object Contains the Necessary Elements: -----------------------

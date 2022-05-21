@@ -1,7 +1,3 @@
-export const imageExModal = document.querySelector(".popup_type_image-ex");
-export const popupImage = imageExModal.querySelector(".popup__image");
-export const popupCaption = imageExModal.querySelector(".popup__caption");
-
 /* ────────────────────────────────────────────────────────────────────────────
    --- FUNCTIONS for the POPUP Windows and EVENT LISTENERS --------------------
    ----- For Closing With the ESCAPE Key or From Overlay: ---------------------

@@ -32,9 +32,11 @@ class FormValidator {
 
   // ────────── CHECKING If the Form Is VALID: ───────────────────────────────────
   _checkInputValidity(input) {
-    !input.validity.valid
-      ? this._showInputError(input)
-      : this._hideInputError(input);
+    if (!input.validity.valid) {
+      this._showInputError(input);
+    } else {
+      this._hideInputError(input);
+    }
   }
   // ────────────────────────────────────────────────────────────────────────────
 
@@ -100,8 +102,7 @@ class FormValidator {
 
   // ──────────────────── Enables Form Validation: ──────────────────────────────
   enableValidation() {
-    this._form.addEventListener("submit", (evt) => {
-      evt.preventDefault();
+    this._form.addEventListener("reset", (evt) => {
       this._toggleButton();
     });
 

@@ -157,9 +157,15 @@ allPostcards.reverse();
 
 const templatePostcardSelector = "#postcard-template";
 
+function createCard(postcard) {
+  const card = new Card(postcard, templatePostcardSelector);
+  const cardElement = card.generateCard(postcard);
+
+  return cardElement;
+}
+
 function reciteCard(postcard, list) {
-  const postcardListItem = new Card(postcard, templatePostcardSelector);
-  list.prepend(postcardListItem.generateCard(postcard));
+  list.prepend(createCard(postcard));
 }
 // Generate Initial and Additional Postcards With the Recite Function:
 allPostcards.forEach((postcard) => reciteCard(postcard, postcardsList));

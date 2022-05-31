@@ -150,6 +150,54 @@ const allPostcards = [
     name: "Brooklyn Bridge",
     link: "https://images.unsplash.com/photo-1618516976493-a957b4225462?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=690&q=80",
   },
+  {
+    name: "Boston",
+    link: "https://images.unsplash.com/photo-1513912909943-53aac2542cc5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
+  },
+  {
+    name: "The Vessel, New York",
+    link: "https://images.unsplash.com/photo-1620832040207-3e6d59f31671?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+  },
+  {
+    name: "Seven Magic Mountains",
+    link: "https://images.unsplash.com/photo-1554231316-b49572f1eca1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+  },
+  {
+    name: "Santa Monica",
+    link: "https://images.unsplash.com/photo-1506190503914-c7c7a69d4ce5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=736&q=80",
+  },
+  {
+    name: "Arches National Park",
+    link: "https://images.unsplash.com/photo-1614484564972-e37b65b5a573?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+  },
+  {
+    name: "Muir Woods National Monument",
+    link: "https://images.unsplash.com/photo-1587582534064-eb80e0ffdaa1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+  },
+  {
+    name: "Pearl Harbor, Hawaii",
+    link: "https://images.unsplash.com/photo-1512710732424-b2ee4029b467?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=779&q=80",
+  },
+  {
+    name: "Multnomah Falls",
+    link: "https://images.unsplash.com/flagged/photo-1575557173660-7062f2c287b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+  },
+  {
+    name: "St. Louis",
+    link: "https://images.unsplash.com/photo-1623947453126-3652fc16b2b0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+  },
+  {
+    name: "San Juan, Puerto Rico",
+    link: "https://images.unsplash.com/photo-1579687196544-08ae57ab5c11?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80",
+  },
+  {
+    name: "9/11 Memorial - World Trade Center",
+    link: "https://images.unsplash.com/photo-1572883515366-83f5e73c6fc6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+  },
+  {
+    name: "Statue of Liberty National Monument",
+    link: "https://images.unsplash.com/photo-1512315342380-81f12a02bd7e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=763&q=80",
+  },
 ];
 
 allPostcards.reverse();

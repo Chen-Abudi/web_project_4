@@ -11,15 +11,20 @@
       content="HTML, CSS, JavaScript, Responsive Layout, Practicum"
     />
     <title>Around The U.S</title>
-    <link rel="stylesheet" href="pages/index.css" />
-    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+    <!-- <link rel="icon" href="./favicon.ico" type="image/x-icon" /> -->
+    <link
+      rel="icon"
+      href="<%=require('./images/favicon2.png')%>"
+      type="image"
+      sizes="16x16"
+    />
   </head>
   <body class="page">
     <!--header block-->
     <header class="header">
       <img
         class="header__logo"
-        src="./images/logo.svg"
+        src="<%=require('./images/logo.svg')%>"
         alt="Around the U.S Logo"
       />
     </header>
@@ -29,7 +34,7 @@
       <section class="profile">
         <img
           class="profile__image"
-          src="./images/jacques-cousteau.jpg"
+          src="<%=require('./images/jacques-cousteau.jpg')%>"
           alt="Jacques Cousteau Profile Image"
         />
         <div class="profile__info">
@@ -80,7 +85,7 @@
             <input
               class="form__input form__input_type_profile-name"
               type="text"
-              name="name"
+              name="username"
               id="input-name"
               placeholder="Name"
               minlength="2"
@@ -93,7 +98,7 @@
             <input
               class="form__input form__input_type_profile-title"
               type="text"
-              name="about"
+              name="userjob"
               placeholder="About Me"
               id="input-about"
               minlength="2"
@@ -130,7 +135,7 @@
             <input
               class="form__input form__input_type_postcard-name"
               type="text"
-              name="input-title"
+              name="name"
               id="input-title"
               placeholder="Title"
               minlength="1"
@@ -143,7 +148,7 @@
             <input
               class="form__input form__input_type_postcard-url"
               type="url"
-              name="input-url"
+              name="link"
               id="input-url"
               placeholder="Image Link"
               required
@@ -195,7 +200,5 @@
         </div>
       </li>
     </template>
-
-    <script src="./scripts/index.js" type="module"></script>
   </body>
 </html>

@@ -82,6 +82,7 @@ class FormValidator {
     const { inputSelector } = this._config;
     this._inputList = [...this._form.querySelectorAll(inputSelector)];
 
+    this._toggleButton();
     this._inputList.forEach((input) => {
       input.addEventListener("input", () => {
         this._checkInputValidity(input, this._config);
@@ -95,6 +96,7 @@ class FormValidator {
   resetValidation() {
     this._inputList.forEach((input) => {
       this._hideInputError(input);
+      // this._disableSubmitButton();
     });
     this._toggleButton();
   }

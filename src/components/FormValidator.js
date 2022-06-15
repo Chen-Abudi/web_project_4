@@ -64,13 +64,11 @@ class FormValidator {
 
   // ─────────────── MODIFY the Button Activity: ────────────────────────────────
   _toggleButton = () => {
-    const { inactiveButtonClass, submitButtonSelector } = this._config;
-    this._submitButton = this._form.querySelector(submitButtonSelector);
-
+    // this._button = this._form.querySelector(this._config.submitButtonSelector);
     if (this._hasValidInput()) {
-      this._disableSubmitButton(this._submitbutton, inactiveButtonClass);
+      this._disableSubmitButton();
     } else {
-      this._enableSubmitButton(this._submitbutton, inactiveButtonClass);
+      this._enableSubmitButton();
     }
   };
   // ────────────────────────────────────────────────────────────────────────────

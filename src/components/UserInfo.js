@@ -1,16 +1,16 @@
 // ──────── User Info Class ────────────────────────────────────────────
 export default class UserInfo {
-  constructor({ userName, userJob }) {
-    this._userNameSelector = userName;
-    this._userJobSelector = userJob;
+  constructor({ userNameSelector, userJobSelector }) {
+    this._userNameElement = document.querySelector(userNameSelector);
+    this._userJobElement = document.querySelector(userJobSelector);
   }
   // ───────────────────────────────────────────────────────────────────
 
   // ───── Returns an Object with User Info ────────────────────────────
   getUserInfo() {
     return {
-      userName: this._userNameSelector.textContent,
-      userJob: this._userJobSelector.textContent,
+      userName: this._userNameElement.textContent,
+      userJob: this._userJobElement.textContent,
     };
   }
   // ───────────────────────────────────────────────────────────────────
@@ -18,8 +18,8 @@ export default class UserInfo {
   // ────── Adding New User Data to Page ───────────────────────────────
   setUserInfo(data) {
     const { username, userjob } = data;
-    this._userNameSelector.textContent = username;
-    this._userJobSelector.textContent = userjob;
+    this._userNameElement.textContent = username;
+    this._userJobElement.textContent = userjob;
   }
   // ───────────────────────────────────────────────────────────────────
 }

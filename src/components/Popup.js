@@ -1,9 +1,9 @@
+const popupIsOpenedClass = "popup_receptive";
 // ────────── Popup Class ─────────────────────────────────────────────────────
 class Popup {
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
     this._closeButton = this._popup.querySelector(".popup__close-button");
-    this._isReceptive = "popup_receptive";
   }
   // ────────────────────────────────────────────────────────────────────────────
 
@@ -25,15 +25,15 @@ class Popup {
     ------------------ Esc Close Event Listeners: --------------------------------
     ──────────────────────────────────────────────────────────────────────────── */
   open() {
-    this._popup.classList.add(this._isReceptive);
+    this._popup.classList.add(popupIsOpenedClass);
     document.addEventListener("keydown", this._handleEscClose);
-    document.addEventListener("click", this._handleOverlayClose);
+    document.addEventListener("mousedown", this._handleOverlayClose);
   }
 
   close() {
-    this._popup.classList.remove(this._isReceptive);
+    this._popup.classList.remove(popupIsOpenedClass);
     document.removeEventListener("keydown", this._handleEscClose);
-    document.removeEventListener("click", this._handleOverlayClose);
+    document.removeEventListener("mousedown", this._handleOverlayClose);
   }
   // ────────────────────────────────────────────────────────────────────────────
 

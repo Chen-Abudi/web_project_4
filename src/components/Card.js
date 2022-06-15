@@ -22,6 +22,7 @@ export default class Card {
   // ────────── Postcard Remove Button Function ─────────────────────────────────
   _handleRemoveButton = () => {
     this._postcardListItem.remove();
+    this._postcardListItem = null;
     this._removeButton.removeEventListener("click", this._handleRemoveButton);
   };
   // ────────────────────────────────────────────────────────────────────────────

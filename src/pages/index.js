@@ -8,10 +8,7 @@ import {
   inputCardName,
   inputCardTitle,
   postcardForm,
-  postcardsList,
   templatePostcardSelector,
-  profileName,
-  profileDescription,
 } from "../utils/constants.js";
 
 import Card from "../components/Card.js";
@@ -64,13 +61,11 @@ const addPostcard = new PopupWithForm({
 });
 addPostcard.setEventListeners();
 // ────────────────────────────────────────────────────────────────────────────
-
 const newUser = new UserInfo({
-  userName: profileName,
-  userJob: profileDescription,
+  userNameSelector: ".profile__name",
+  userJobSelector: ".profile__description",
 });
 // ────────────────────────────────────────────────────────────────────────────
-
 const editProfileModal = new PopupWithForm({
   popupSelector: ".popup_type_edit-profile",
   handleFormSubmit: (data) => {

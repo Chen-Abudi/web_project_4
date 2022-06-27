@@ -10,9 +10,9 @@ export default class Card {
     this._link = data.link;
     this._userId = userId;
     this._cardId = data._id;
-    this.ownerId = data.owner._id;
+    this._ownerId = data.owner._id;
     this._handleCardClick = handleCardClick;
-    this.handleRemoveCard = handleRemoveCard;
+    this._handleRemoveCard = handleRemoveCard;
     this._handleLikeCard = handleLikeCard;
     this._templatePostcardSelector = templatePostcardSelector;
   }

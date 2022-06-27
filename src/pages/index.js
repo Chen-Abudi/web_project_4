@@ -9,6 +9,8 @@ import {
   inputCardTitle,
   postcardForm,
   templatePostcardSelector,
+  baseUrl,
+  headers,
 } from "../utils/constants.js";
 
 import Card from "../components/Card.js";
@@ -17,6 +19,8 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import Section from "../components/Section.js";
 import FormValidator from "../components/FormValidator.js";
+
+import Api from "../components/Api.js";
 
 import allPostcards from "../utils/allPostcards.js";
 
@@ -27,30 +31,73 @@ profileFormValidator.enableValidation();
 postcardFormValidator.enableValidation();
 
 // ────────────────────────────────────────────────────────────────────────────
+// let userId;
 
-const cardList = new Section(
-  {
-    data: allPostcards,
-    renderer: (data) => {
-      const postcard = createCard(data);
-      cardList.setItem(postcard);
+const api = new Api(baseUrl, headers);
+
+const newUser = new UserInfo({
+  userNameSelector: ".profile__name",
+  userJobSelector: ".profile__description",
+  userAvatarSelector: ".profile__image",
+});
+
+api.getUserInfo().then((res) => {
+  newUser.setUserInfo(res.name, res.about);
+  newUser.setUserAvatar(res.avatar);
+  newUser.setUserId(res._id);
+});
+
+api.getInitialcards().then((res) => {
+  const cardList = new Section(
+    {
+      data: res,
+      renderer: (data) => {
+        const postcard = createCard(data);
+        cardList.setItem(postcard);
+      },
     },
-  },
-  ".postcards__list"
-);
-cardList.render();
+    ".postcards__list"
+  );
+  cardList.render();
+});
 // ────────────────────────────────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────────────────
+// const cardList = new Section(
+//   {
+//     // data: allPostcards,
+//     renderer: (data) => {
+//       const postcard = createCard(data);
+//       cardList.setItem(postcard);
+//     },
+//   },
+//   ".postcards__list"
+// );
+// cardList.render();
+// ────────────────────────────────────────────────────────────────────────────
+
+// ────────────────────────────────────────────────────────────────────────────
+// Generate Card
 function createCard(data) {
-  const card = new Card(data, templatePostcardSelector, () => {
-    imagePopup.open(data.link, data.name);
-  });
+  const card = new Card(
+    data,
+    templatePostcardSelector,
+    {
+      handleCardClick: () => {
+        imagePopup.open(data.link, data.name);
+      },
+      handleRemoveCard: () => {},
+      handleLikeCard: () => {},
+    },
+    newUser.getUserId()
+  );
   const cardElement = card.generateCard();
 
   return cardElement;
 }
 // ────────────────────────────────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────────────────
 const addPostcard = new PopupWithForm({
   popupSelector: ".popup_type_add-postcard",
   handleFormSubmit: (data) => {
@@ -61,15 +108,12 @@ const addPostcard = new PopupWithForm({
 });
 addPostcard.setEventListeners();
 // ────────────────────────────────────────────────────────────────────────────
-const newUser = new UserInfo({
-  userNameSelector: ".profile__name",
-  userJobSelector: ".profile__description",
-});
+
 // ────────────────────────────────────────────────────────────────────────────
 const editProfileModal = new PopupWithForm({
   popupSelector: ".popup_type_edit-profile",
   handleFormSubmit: (data) => {
-    newUser.setUserInfo({ username: data.username, userjob: data.userjob });
+    newUser.setUserInfo(data.username, data.userjob);
     editProfileModal.close();
   },
 });

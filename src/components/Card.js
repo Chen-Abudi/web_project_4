@@ -1,10 +1,20 @@
 // ────────── Postcard Class ─────────────────────────────────────────────────────
 export default class Card {
-  constructor({ name, link }, templatePostcardSelector, handleCardClick) {
-    this._name = name;
-    this._link = link;
-    this._templatePostcardSelector = templatePostcardSelector;
+  constructor(
+    data,
+    templatePostcardSelector,
+    { handleCardClick, handleRemoveCard, handleLikeCard },
+    userId
+  ) {
+    this._name = data.name;
+    this._link = data.link;
+    this._userId = userId;
+    this._cardId = data._id;
+    this.ownerId = data.owner._id;
     this._handleCardClick = handleCardClick;
+    this.handleRemoveCard = handleRemoveCard;
+    this._handleLikeCard = handleLikeCard;
+    this._templatePostcardSelector = templatePostcardSelector;
   }
   // ─────────────────────────────────────────────────────────────────────────────
 
@@ -19,11 +29,23 @@ export default class Card {
   }
   // ────────────────────────────────────────────────────────────────────────────
 
+  _cardAttributes() {
+    this._title = this._postcardListItem.querySelector(".postcard__title");
+    this._img = this._postcardListItem.querySelector(".postcard__image");
+    this._likeButton = this._postcardListItem.querySelector(
+      ".postcard__like-button"
+    );
+    this._removeButton = this._postcardListItem.querySelector(
+      ".postcard__remove-button"
+    );
+  }
+
+  // ────────────────────────────────────────────────────────────────────────────
+
   // ────────── Postcard Remove Button Function ─────────────────────────────────
   _handleRemoveButton = () => {
     this._postcardListItem.remove();
     this._postcardListItem = null;
-    this._removeButton.removeEventListener("click", this._handleRemoveButton);
   };
   // ────────────────────────────────────────────────────────────────────────────
 
@@ -49,14 +71,7 @@ export default class Card {
      ──────────────────────────────────────────────────────────────────────────── */
   generateCard() {
     this._postcardListItem = this._getTemplate();
-    this._title = this._postcardListItem.querySelector(".postcard__title");
-    this._img = this._postcardListItem.querySelector(".postcard__image");
-    this._likeButton = this._postcardListItem.querySelector(
-      ".postcard__like-button"
-    );
-    this._removeButton = this._postcardListItem.querySelector(
-      ".postcard__remove-button"
-    );
+    this._cardAttributes();
 
     this._title.textContent = this._name;
     this._img.src = this._link;

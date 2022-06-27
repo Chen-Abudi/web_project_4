@@ -32,21 +32,24 @@
     <main class="content">
       <!--profile block-->
       <section class="profile">
-        <img
+        <!-- <img
           class="profile__image"
           src="<%=require('./images/jacques-cousteau.jpg')%>"
           alt="Jacques Cousteau Profile Image"
-        />
+        /> -->
+        <img class="profile__image" src="#" alt="User's Profile Photo" />
         <div class="profile__info">
           <div class="profile__person">
-            <h1 class="profile__name">Jacques Cousteau</h1>
+            <!-- <h1 class="profile__name">Jacques Cousteau</h1> -->
+            <h1 class="profile__name"></h1>
             <button
               class="profile__edit-button"
               type="button"
               aria-label="open-edit-profile-modal"
             ></button>
           </div>
-          <p class="profile__description">Explorer</p>
+          <!-- <p class="profile__description">Explorer</p> -->
+          <p class="profile__description"></p>
         </div>
         <button
           class="profile__add-button"
@@ -181,6 +184,69 @@
       </div>
     </div>
 
+    <!-- popup avatar update -->
+    <!-- <section class="popup popup_type_avatar-update">
+      <div class="popup__overlay">
+        <button
+          class="popup__close-button popup__close-button_type_avatar"
+          type="button"
+          aria-label="close-delete-modal"
+        ></button>
+        <h2 class="popup__title">Update Profile Picture</h2>
+        <form
+          action="submit"
+          class="form popup__form popup__form_type_avatar-update"
+          name="avatarForm"
+          novalidate
+        >
+        <fieldset class="form__fieldset">
+          <input
+            class="form__input form__input_type_avatar-url"
+            type="url"
+            name="link"
+            id="input-avatar"
+            placeholder="User Image Url"
+            required
+          />
+          <span class="form__input-error input-avatar-error"></span>
+        </fieldset>
+
+        <fieldset class="form__fieldset">
+          <button class="form__button form__button_type_avatar" type="submit">
+            Save
+          </button>
+        </fieldset>
+        </form>
+      </div>
+    </section> -->
+
+    <!-- popup delete postcard -->
+    <!-- <section class="popup popup_type_delete-postcard">
+      <div class="popup__overlay">
+        <button
+          class="popup__close-button popup__close-button_type_delete-postcard"
+          type="button"
+          aria-label="delete-postcard"
+        ></button>
+        <h2 class="popup__title">Are you sure?</h2>
+        <form
+          action="submit"
+          class="form popup__form popup__form_type_delete-postcard"
+          name="deleteForm"
+          novalidate
+        >
+          <fieldset class="form__fieldset">
+            <button
+              class="form__button form__button_type_delete-postcard"
+              type="submit"
+            >
+              Yes
+            </button>
+          </fieldset>
+        </form>
+      </div>
+    </section> -->
+
     <!--postcard template-->
     <template id="postcard-template">
       <li class="postcard">
@@ -197,6 +263,7 @@
             aria-label="like-or-unlike-postcard"
             type="button"
           ></button>
+          <!-- <span class="postcard__like-counter">0</span> -->
         </div>
       </li>
     </template>

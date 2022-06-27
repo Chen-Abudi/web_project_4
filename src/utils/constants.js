@@ -43,6 +43,16 @@ const postcardsList = postcards.querySelector(".postcards__list");
 const templatePostcardSelector = "#postcard-template";
 // ────────────────────────────────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────────────────
+// Connecting to Practicum's Api
+const baseUrl = "https://around.nomoreparties.co/v1/cohort-3-en";
+const headers = {
+  authorization: "7206ed33-5b05-44a8-9280-ab5ebd7021d1",
+  "Content-Type": "application/json",
+};
+
+// ────────────────────────────────────────────────────────────────────────────
+
 export {
   config,
   profileForm,
@@ -58,4 +68,6 @@ export {
   imageExModal,
   postcardsList,
   templatePostcardSelector,
+  baseUrl,
+  headers,
 };

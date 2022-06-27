@@ -1,8 +1,9 @@
 // ──────── User Info Class ────────────────────────────────────────────
 export default class UserInfo {
-  constructor({ userNameSelector, userJobSelector }) {
+  constructor({ userNameSelector, userJobSelector, userAvatarSelector }) {
     this._userNameElement = document.querySelector(userNameSelector);
     this._userJobElement = document.querySelector(userJobSelector);
+    this._userAvatarElement = document.querySelector(userAvatarSelector);
   }
   // ───────────────────────────────────────────────────────────────────
 
@@ -15,11 +16,25 @@ export default class UserInfo {
   }
   // ───────────────────────────────────────────────────────────────────
 
+  getUserId() {
+    return this._userId;
+  }
+
+  setUserId(userId) {
+    this._userId = userId;
+  }
+
+  // ───────────────────────────────────────────────────────────────────
+
+  setUserAvatar(avatar) {
+    this._userAvatarElement.src = avatar;
+  }
+  // ───────────────────────────────────────────────────────────────────
+
   // ────── Adding New User Data to Page ───────────────────────────────
-  setUserInfo(data) {
-    const { username, userjob } = data;
+  setUserInfo(username, userjob) {
+    // const { username, userjob } = data;
     this._userNameElement.textContent = username;
     this._userJobElement.textContent = userjob;
   }
-  // ───────────────────────────────────────────────────────────────────
 }

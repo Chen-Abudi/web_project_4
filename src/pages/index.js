@@ -129,8 +129,13 @@ addPostcard.setEventListeners();
 const editProfileModal = new PopupWithForm({
   popupSelector: ".popup_type_edit-profile",
   handleFormSubmit: (data) => {
-    newUser.setUserInfo(data.username, data.userjob);
-    editProfileModal.close();
+    api
+      .setUserInfo({ name: data.username, about: data.userjob })
+      .then((data) => {
+        newUser.setUserInfo(data.name, data.about);
+        editProfileModal.close();
+      })
+      .catch((err) => console.log(err));
   },
 });
 editProfileModal.setEventListeners();

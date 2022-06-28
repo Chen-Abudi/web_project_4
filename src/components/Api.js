@@ -32,4 +32,17 @@ export default class Api {
       return this._returnRes(res);
     });
   }
+
+  setUserInfo({ name, about }) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: name,
+        about: about,
+      }),
+    }).then((res) => {
+      return this._returnRes(res);
+    });
+  }
 }

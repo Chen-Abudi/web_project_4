@@ -1,15 +1,15 @@
 // ────────── Section Class ─────────────────────────────────────────────────────
 export default class Section {
-  constructor({ data, renderer }, containerSelector) {
-    this._renderedItems = data;
+  constructor({ renderer }, containerSelector) {
+    // this._renderedItems = data;
     this._renderer = renderer;
     this._container = document.querySelector(containerSelector);
   }
   // ────────────────────────────────────────────────────────────────────────────
 
   // ─────────────── Recite Each Element on Page ────────────────────────────────
-  render() {
-    this._renderedItems.forEach((item) => {
+  render(data) {
+    data.forEach((item) => {
       this._renderer(item);
     });
   }

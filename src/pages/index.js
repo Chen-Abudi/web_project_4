@@ -31,8 +31,6 @@ profileFormValidator.enableValidation();
 postcardFormValidator.enableValidation();
 
 // ────────────────────────────────────────────────────────────────────────────
-// let userId;
-
 const api = new Api(baseUrl, headers);
 
 const newUser = new UserInfo({
@@ -41,39 +39,51 @@ const newUser = new UserInfo({
   userAvatarSelector: ".profile__image",
 });
 
-api.getUserInfo().then((res) => {
-  newUser.setUserInfo(res.name, res.about);
-  newUser.setUserAvatar(res.avatar);
-  newUser.setUserId(res._id);
-});
+// api.getUserInfo().then((res) => {
+//   newUser.setUserInfo(res.name, res.about);
+//   newUser.setUserAvatar(res.avatar);
+//   newUser.setUserId(res._id);
+// });
 
-api.getInitialcards().then((res) => {
-  const cardList = new Section(
-    {
-      data: res,
-      renderer: (data) => {
-        const postcard = createCard(data);
-        cardList.setItem(postcard);
-      },
-    },
-    ".postcards__list"
-  );
-  cardList.render();
-});
-// ────────────────────────────────────────────────────────────────────────────
-
-// ────────────────────────────────────────────────────────────────────────────
-// const cardList = new Section(
-//   {
-//     // data: allPostcards,
-//     renderer: (data) => {
-//       const postcard = createCard(data);
-//       cardList.setItem(postcard);
+// api.getInitialcards().then(() => {
+//   const cardList = new Section(
+//     {
+//       // data: res,
+//       renderer: (data) => {
+//         const postcard = createCard(data);
+//         cardList.setItem(postcard);
+//       },
 //     },
-//   },
-//   ".postcards__list"
-// );
+//     ".postcards__list"
+//   );
+//   cardList.render();
+// });
+// ────────────────────────────────────────────────────────────────────────────
+const cardList = new Section(
+  {
+    // renderer: (data) => {
+    //   const postcard = createCard(data);
+    //   cardList.setItem(postcard);
+    // },
+    renderer: reciteCard,
+  },
+  ".postcards__list"
+);
 // cardList.render();
+// ────────────────────────────────────────────────────────────────────────────
+
+/* ────────────────────────────────────────────────────────────────────────────
+   ------ It takes an iterable of Promises as an input, and returns a ---------
+   - single Promise which resolves to an array of the input Promises result ---
+   ──────────────────────────────────────────────────────────────────────────── */
+Promise.all([api.getUserInfo(), api.getInitialcards()])
+  .then(([userData, cardsData]) => {
+    newUser.setUserInfo(userData.name, userData.about);
+    newUser.setUserAvatar(userData.avatar);
+    newUser.setUserId(userData._id);
+    cardList.render(cardsData);
+  })
+  .catch((err) => console.log(err));
 // ────────────────────────────────────────────────────────────────────────────
 
 // ────────────────────────────────────────────────────────────────────────────
@@ -91,11 +101,17 @@ function createCard(data) {
     },
     newUser.getUserId()
   );
-  const cardElement = card.generateCard();
+  // const cardElement = card.generateCard();
 
-  return cardElement;
+  // return cardElement;
+  return card.generateCard();
 }
 // ────────────────────────────────────────────────────────────────────────────
+
+function reciteCard(data) {
+  const postcard = createCard(data);
+  cardList.setItem(postcard);
+}
 
 // ────────────────────────────────────────────────────────────────────────────
 const addPostcard = new PopupWithForm({

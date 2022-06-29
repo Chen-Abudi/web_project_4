@@ -64,6 +64,14 @@
   flex-grow: 1;
 }
 
+.postcard__like-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+
 .postcard__like-button {
   background-image: url("../images/heart-icon.svg");
   background-color: transparent;
@@ -89,10 +97,10 @@
   background-image: url("../images/heart-icon_stuffed.svg");
 }
 
-/* .postcard__like-counter {
+.postcard__like-counter {
   color: #000;
   text-align: center;
-  margin-top: 3px;
   font-size: 13px;
   line-height: 16px;
-} */
+  padding: 0;
+}

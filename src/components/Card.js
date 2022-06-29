@@ -11,6 +11,7 @@ export default class Card {
     this._userId = userId;
     this._cardId = data._id;
     this._ownerId = data.owner._id;
+    this._likes = data.likes;
     this._handleCardClick = handleCardClick;
     this._handleRemoveCard = handleRemoveCard;
     this._handleLikeCard = handleLikeCard;
@@ -35,12 +36,19 @@ export default class Card {
     this._likeButton = this._postcardListItem.querySelector(
       ".postcard__like-button"
     );
+    this._likeButtonCounter = this._postcardListItem.querySelector(
+      ".postcard__like-counter"
+    );
     this._removeButton = this._postcardListItem.querySelector(
       ".postcard__remove-button"
     );
   }
 
   // ────────────────────────────────────────────────────────────────────────────
+  // Shows the Likes Quantity
+  _getLikesQuantity() {
+    this._likeButtonCounter.textContent = this._likes.length;
+  }
 
   // ────────── Postcard Remove Button Function ─────────────────────────────────
   _handleRemoveButton = () => {
@@ -54,6 +62,12 @@ export default class Card {
     evt.target.classList.toggle("postcard__like-button_active");
   };
   // ────────────────────────────────────────────────────────────────────────────
+
+  // _setUserLikes() {
+  //   if (this._likes.some((item) => item._id === this._userId)) {
+  //     this._likeButton.classList.add("postcard__like-button_active");
+  //   }
+  // }
 
   // ─────────── Event Listeners for the Necessary functions ────────────────────
   _setEventListeners() {
@@ -72,6 +86,8 @@ export default class Card {
   generateCard() {
     this._postcardListItem = this._getTemplate();
     this._cardAttributes();
+    this._getLikesQuantity();
+    // this._setUserLikes();
 
     this._title.textContent = this._name;
     this._img.src = this._link;

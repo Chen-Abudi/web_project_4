@@ -33,6 +33,7 @@ postcardFormValidator.enableValidation();
 // ────────────────────────────────────────────────────────────────────────────
 const api = new Api(baseUrl, headers);
 
+// An Instant of User Info
 const newUser = new UserInfo({
   userNameSelector: ".profile__name",
   userJobSelector: ".profile__description",
@@ -86,8 +87,7 @@ Promise.all([api.getUserInfo(), api.getInitialcards()])
   .catch((err) => console.log(err));
 // ────────────────────────────────────────────────────────────────────────────
 
-// ────────────────────────────────────────────────────────────────────────────
-// Generate Card
+// ───── Generate Card ────────────────────────────────────────────────────────
 function createCard(data) {
   const card = new Card(
     data,
@@ -108,24 +108,31 @@ function createCard(data) {
 }
 // ────────────────────────────────────────────────────────────────────────────
 
+// Reciting the Postcard on the Page
 function reciteCard(data) {
   const postcard = createCard(data);
   cardList.setItem(postcard);
 }
-
 // ────────────────────────────────────────────────────────────────────────────
+
+// ────── Add Postcard Modal ──────────────────────────────────────────────────
 const addPostcard = new PopupWithForm({
   popupSelector: ".popup_type_add-postcard",
   handleFormSubmit: (data) => {
-    const newPostcard = createCard(data);
-    cardList.addItem(newPostcard);
-    addPostcard.close();
+    api
+      .addCard(data)
+      .then((data) => {
+        const newPostcard = createCard(data);
+        cardList.addItem(newPostcard);
+        addPostcard.close();
+      })
+      .catch((err) => console.log(err));
   },
 });
 addPostcard.setEventListeners();
 // ────────────────────────────────────────────────────────────────────────────
 
-// ────────────────────────────────────────────────────────────────────────────
+// ───── Edit Profile Modal ───────────────────────────────────────────────────
 const editProfileModal = new PopupWithForm({
   popupSelector: ".popup_type_edit-profile",
   handleFormSubmit: (data) => {

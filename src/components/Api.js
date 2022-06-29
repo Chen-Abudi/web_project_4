@@ -45,4 +45,14 @@ export default class Api {
       return this._returnRes(res);
     });
   }
+
+  addCard(data) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify(data),
+    }).then((res) => {
+      return this._returnRes(res);
+    });
+  }
 }

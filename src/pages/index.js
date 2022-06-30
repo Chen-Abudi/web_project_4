@@ -97,10 +97,22 @@ function createCard(data) {
       handleCardClick: () => {
         imagePopup.open(data.link, data.name);
       },
-      handleRemoveCard: () => {
+      handleRemoveCard: ({ id }) => {
         removeImagePopup.open();
 
-        removeImagePopup.setSubmitAction(() => {});
+        removeImagePopup.setSubmitAction(() => {
+          api
+            .removeCard(id)
+            .then((res) => {
+              console.log("postcard is removed", res);
+              card.setRemoveCard();
+            })
+            .then(() => {
+              console.log("postcard was removed by the server");
+              removeImagePopup.close();
+            })
+            .catch((err) => console.log(err));
+        });
       },
       handleLikeCard: () => {},
     },

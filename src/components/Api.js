@@ -55,4 +55,13 @@ export default class Api {
       return this._returnRes(res);
     });
   }
+
+  removeCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then((res) => {
+      return this._returnRes(res);
+    });
+  }
 }

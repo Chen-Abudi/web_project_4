@@ -63,16 +63,22 @@ export default class Card {
   };
   // ────────────────────────────────────────────────────────────────────────────
 
-  // _setUserLikes() {
-  //   if (this._likes.some((item) => item._id === this._userId)) {
-  //     this._likeButton.classList.add("postcard__like-button_active");
-  //   }
-  // }
+  _setUserLikes() {
+    if (this._likes.some((item) => item._id === this._userId)) {
+      this._likeButton.classList.add("postcard__like-button_active");
+    }
+  }
 
   // ─────────── Event Listeners for the Necessary functions ────────────────────
   _setEventListeners() {
     this._likeButton.addEventListener("click", this._handleLikeButton);
-    this._removeButton.addEventListener("click", this._handleRemoveButton);
+    // this._removeButton.addEventListener("click", this._handleRemoveButton);
+
+    this._removeButton.addEventListener("click", () => {
+      this._handleRemoveCard({
+        id: this._cardId,
+      });
+    });
 
     this._img.addEventListener("click", () => {
       this._handleCardClick(this._name, this._link);
@@ -87,11 +93,14 @@ export default class Card {
     this._postcardListItem = this._getTemplate();
     this._cardAttributes();
     this._getLikesQuantity();
-    // this._setUserLikes();
+    this._setUserLikes();
 
     this._title.textContent = this._name;
     this._img.src = this._link;
     this._img.alt = `A colorful and magnificent view of ${this._name}`;
+
+    this._ownerId !== this._userId &&
+      (this._removeButton.style.display = "none");
 
     this._setEventListeners();
 

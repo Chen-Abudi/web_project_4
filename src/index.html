@@ -220,24 +220,26 @@
       </div>
     </section> -->
 
-    <!-- popup delete postcard -->
-    <!-- <section class="popup popup_type_delete-postcard">
-      <div class="popup__overlay">
+    <!-- popup remove postcard -->
+    <section class="popup popup_type_remove-postcard">
+      <div class="popup__overlay popup__overlay_type_remove-postcard">
         <button
-          class="popup__close-button popup__close-button_type_delete-postcard"
+          class="popup__close-button popup__close-button_type_remove-postcard"
           type="button"
-          aria-label="delete-postcard"
+          aria-label="remove-postcard"
         ></button>
-        <h2 class="popup__title">Are you sure?</h2>
+        <h2 class="popup__title popup__title_type_remove-postcard">
+          Are you sure?
+        </h2>
         <form
           action="submit"
-          class="form popup__form popup__form_type_delete-postcard"
+          class="form popup__form popup__form_type_remove-postcard"
           name="deleteForm"
           novalidate
         >
           <fieldset class="form__fieldset">
             <button
-              class="form__button form__button_type_delete-postcard"
+              class="form__button form__button_type_remove-postcard"
               type="submit"
             >
               Yes
@@ -245,7 +247,7 @@
           </fieldset>
         </form>
       </div>
-    </section> -->
+    </section>
 
     <!--postcard template-->
     <template id="postcard-template">

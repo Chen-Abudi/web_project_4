@@ -14,6 +14,7 @@ import {
 } from "../utils/constants.js";
 
 import Card from "../components/Card.js";
+import PopupRemoveImage from "../components/PopupRemoveImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
@@ -96,7 +97,11 @@ function createCard(data) {
       handleCardClick: () => {
         imagePopup.open(data.link, data.name);
       },
-      handleRemoveCard: () => {},
+      handleRemoveCard: () => {
+        removeImagePopup.open();
+
+        removeImagePopup.setSubmitAction(() => {});
+      },
       handleLikeCard: () => {},
     },
     newUser.getUserId()
@@ -150,6 +155,12 @@ editProfileModal.setEventListeners();
 
 const imagePopup = new PopupWithImage(".popup_type_image-ex");
 imagePopup.setEventListeners();
+
+const removeImagePopup = new PopupRemoveImage({
+  popupSelector: ".popup_type_remove-postcard",
+  handleFormSubmit: () => {},
+});
+removeImagePopup.setEventListeners();
 
 /* ────────────────────────────────────────────────────────────────────────────
    ------------------- Adding the Necessary Event Listeners: ------------------

@@ -32,6 +32,7 @@ export default class Card {
   }
   // ────────────────────────────────────────────────────────────────────────────
 
+  // Postcard and its attributes
   _cardAttributes() {
     this._title = this._postcardListItem.querySelector(".postcard__title");
     this._img = this._postcardListItem.querySelector(".postcard__image");
@@ -60,13 +61,13 @@ export default class Card {
       })
       .catch((err) => console.log(err));
   }
-
   // ────────────────────────────────────────────────────────────────────────────
 
   // Shows the Likes Quantity
   _getLikesQuantity() {
     this._likeButtonCounter.textContent = this._likes.length;
   }
+  // ────────────────────────────────────────────────────────────────────────────
 
   // ────────── Postcard Remove Button Function ─────────────────────────────────
   // _handleRemoveButton = () => {
@@ -92,6 +93,7 @@ export default class Card {
       this._likeButton.classList.add("postcard__like-button_active");
     }
   }
+  // ────────────────────────────────────────────────────────────────────────────
 
   // ─────────── Event Listeners for the Necessary functions ────────────────────
   _setEventListeners() {

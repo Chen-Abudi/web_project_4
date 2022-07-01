@@ -64,4 +64,15 @@ export default class Api {
       return this._returnRes(res);
     });
   }
+
+  cardLike(cardId, isItLiked) {
+    let method;
+    isItLiked ? (method = "DELETE") : (method = "PUT");
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      method: method,
+      headers: this._headers,
+    }).then((res) => {
+      return this._returnRes(res);
+    });
+  }
 }

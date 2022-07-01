@@ -114,7 +114,9 @@ function createCard(data) {
             .catch((err) => console.log(err));
         });
       },
-      handleLikeCard: () => {},
+      handleLikeCard: (cardId, isItLiked) => api.cardLike(cardId, isItLiked),
+
+      // handleLikeCard: () => {},
     },
     newUser.getUserId()
   );
@@ -170,7 +172,7 @@ imagePopup.setEventListeners();
 
 const removeImagePopup = new PopupRemoveImage({
   popupSelector: ".popup_type_remove-postcard",
-  handleFormSubmit: () => {},
+  // handleFormSubmit: () => {},
 });
 removeImagePopup.setEventListeners();
 

@@ -1,4 +1,4 @@
-# Project 4, 5, 6, 7, 8: Around The U.S.
+# Project 4-9: Around The U.S.
 
 ### Overview
 
@@ -34,6 +34,8 @@ All elements are designed to be displayed correctly on the popular screen size (
 - Webpack, babel, postcss
 - Npm
 - Node.js
+- Asynchronous Programming
+- API's Requests
 
 ## Continued Development
 
@@ -45,6 +47,8 @@ All elements are designed to be displayed correctly on the popular screen size (
 
 - [Link to the project in Figma : part 3](https://www.figma.com/file/05izwsCh3F3UsBmHfHhUFQ/Sprint-6%3A-Around-The-U.S.?node-id=0%3A1)
 
+- [Link to the project in Figma : part 4](https://www.figma.com/file/xQVeb8gprjukPVKXiLXS5T/Sprint-9%3A-Applied-JavaScript?node-id=0%3A1)
+
 **Images**
 
 - [For more incredible images, you can check this site](https://unsplash.com/)
@@ -55,25 +59,28 @@ All elements are designed to be displayed correctly on the popular screen size (
 - Made the like button function.
 - Added the option to remove places.
 - Picture popup for images.
-- Form Validation.
-- Resets Form Validation after submitting.
+- Form Validation and resets after submitting.
 - Closing popup windows from overlay, or with the Escape key.
 - Refactor and Separate JS code into modules using OOP.
 - Using Webpack for separate JS code into Modules to minify the code.
 - Class Destructing.
+- API's request calls for necessary actions.
+- Like Button counter.
+- Update profile image pop window with link inside.
+- Popup window to check if the user is sure to remove postcard.
+- Add and Remove likes.
+- All forms UX improvement.
 
 ## Possible Improvements
 
 - Optimize the website for Disabled Users.
 - Optimize the page speed and adding security.
 - Additional animations.
-- Adding a counter to the like Buttons.
-- The option to change the profile image with popup window and link inside.
-- Popup window to check if the user is sure to remove postcard.
 - Option to select postcards group to remove together.
 - Import/export postcards.
 - Work with the server so the information can be saved.
 - Using Backend to store the forms contact changes.
+- User Registration.
 
 ## Deployed Project
 

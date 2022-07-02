@@ -89,6 +89,7 @@ Promise.all([api.getUserInfo(), api.getInitialcards()])
     newUser.setUserId(userData._id);
     cardList.render(cardsData);
   })
+  .then(() => newUser.setAvatarSight())
   .catch((err) => console.log(err));
 // ────────────────────────────────────────────────────────────────────────────
 

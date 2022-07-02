@@ -29,6 +29,10 @@ export default class UserInfo {
   setUserAvatar(avatar) {
     this._userAvatarElement.src = avatar;
   }
+
+  setAvatarSight() {
+    this._userAvatarElement.style.visibility = "visible";
+  }
   // ───────────────────────────────────────────────────────────────────
 
   // ────── Adding New User Data to Page ───────────────────────────────

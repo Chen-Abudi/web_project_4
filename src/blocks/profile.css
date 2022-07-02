@@ -45,6 +45,8 @@
   margin-right: 30px;
   object-fit: cover;
   position: relative;
+  z-index: 1;
+  visibility: hidden;
 }
 
 .profile__info {

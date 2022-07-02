@@ -25,8 +25,6 @@ import FormValidator from "../components/FormValidator.js";
 
 import Api from "../components/Api.js";
 
-import allPostcards from "../utils/allPostcards.js";
-
 const profileFormValidator = new FormValidator(config, profileForm);
 const postcardFormValidator = new FormValidator(config, postcardForm);
 const avatarFormValidator = new FormValidator(config, updateAvatarForm);
@@ -44,38 +42,13 @@ const newUser = new UserInfo({
   userJobSelector: ".profile__description",
   userAvatarSelector: ".profile__image",
 });
-
-// api.getUserInfo().then((res) => {
-//   newUser.setUserInfo(res.name, res.about);
-//   newUser.setUserAvatar(res.avatar);
-//   newUser.setUserId(res._id);
-// });
-
-// api.getInitialcards().then(() => {
-//   const cardList = new Section(
-//     {
-//       // data: res,
-//       renderer: (data) => {
-//         const postcard = createCard(data);
-//         cardList.setItem(postcard);
-//       },
-//     },
-//     ".postcards__list"
-//   );
-//   cardList.render();
-// });
 // ────────────────────────────────────────────────────────────────────────────
 const cardList = new Section(
   {
-    // renderer: (data) => {
-    //   const postcard = createCard(data);
-    //   cardList.setItem(postcard);
-    // },
     renderer: reciteCard,
   },
   ".postcards__list"
 );
-// cardList.render();
 // ────────────────────────────────────────────────────────────────────────────
 
 /* ────────────────────────────────────────────────────────────────────────────
@@ -120,14 +93,9 @@ function createCard(data) {
         });
       },
       handleLikeCard: (cardId, isItLiked) => api.cardLike(cardId, isItLiked),
-
-      // handleLikeCard: () => {},
     },
     newUser.getUserId()
   );
-  // const cardElement = card.generateCard();
-
-  // return cardElement;
   return card.generateCard();
 }
 // ────────────────────────────────────────────────────────────────────────────
@@ -155,7 +123,6 @@ const addPostcard = new PopupWithForm({
       .finally(() => addPostcard.renderLoadingStatus(false));
   },
 });
-// addPostcard.setEventListeners();
 // ────────────────────────────────────────────────────────────────────────────
 
 // ───── Edit Profile Modal ───────────────────────────────────────────────────
@@ -173,19 +140,15 @@ const editProfileModal = new PopupWithForm({
       .finally(() => editProfileModal.renderLoadingStatus(false));
   },
 });
-// editProfileModal.setEventListeners();
 // ────────────────────────────────────────────────────────────────────────────
 
 const imagePopup = new PopupWithImage(".popup_type_image-ex");
-// imagePopup.setEventListeners();
 
 const removeImagePopup = new PopupRemoveImage({
   popupSelector: ".popup_type_remove-postcard",
-  // handleFormSubmit: () => {},
 });
-// removeImagePopup.setEventListeners();
 // ────────────────────────────────────────────────────────────────────────────
-
+// Avatar update popup
 const updateAvatarPopup = new PopupWithForm({
   popupSelector: ".popup_type_avatar-update",
   handleFormSubmit: (data) => {
@@ -200,8 +163,7 @@ const updateAvatarPopup = new PopupWithForm({
       .finally(() => updateAvatarPopup.renderLoadingStatus(false));
   },
 });
-
-// updateAvatarPopup.setEventListeners();
+// ────────────────────────────────────────────────────────────────────────────
 
 /* ────────────────────────────────────────────────────────────────────────────
    ------------------- Adding the Necessary Event Listeners: ------------------
@@ -218,8 +180,6 @@ editProfileButton.addEventListener("click", () => {
 addPostcardButton.addEventListener("click", () => {
   addPostcard.open();
   postcardFormValidator.resetValidation();
-
-  // postcardForm.reset();
 });
 
 avatar.addEventListener("click", () => {

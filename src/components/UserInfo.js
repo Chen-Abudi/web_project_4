@@ -37,7 +37,6 @@ export default class UserInfo {
 
   // ────── Adding New User Data to Page ───────────────────────────────
   setUserInfo(username, userjob) {
-    // const { username, userjob } = data;
     this._userNameElement.textContent = username;
     this._userJobElement.textContent = userjob;
   }

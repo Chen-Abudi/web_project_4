@@ -1,7 +1,6 @@
 // ────────── Section Class ─────────────────────────────────────────────────────
 export default class Section {
   constructor({ renderer }, containerSelector) {
-    // this._renderedItems = data;
     this._renderer = renderer;
     this._container = document.querySelector(containerSelector);
   }

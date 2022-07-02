@@ -123,5 +123,3 @@ const allPostcards = [
     link: "https://images.unsplash.com/photo-1512315342380-81f12a02bd7e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=763&q=80",
   },
 ];
-
-export default allPostcards;

@@ -64,7 +64,6 @@ class FormValidator {
 
   // ─────────────── MODIFY the Button Activity: ────────────────────────────────
   _toggleButton = () => {
-    // this._button = this._form.querySelector(this._config.submitButtonSelector);
     if (this._hasValidInput()) {
       this._disableSubmitButton();
     } else {

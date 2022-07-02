@@ -1,5 +1,3 @@
-import { templatePostcardSelector } from "../utils/constants";
-
 // ────────── Postcard Class ─────────────────────────────────────────────────────
 export default class Card {
   constructor(
@@ -70,22 +68,10 @@ export default class Card {
   // ────────────────────────────────────────────────────────────────────────────
 
   // ────────── Postcard Remove Button Function ─────────────────────────────────
-  // _handleRemoveButton = () => {
-  //   this._postcardListItem.remove();
-  //   this._postcardListItem = null;
-  // };
-
-  // ────────── Postcard Remove Button Function ─────────────────────────────────
   setRemoveCard() {
     this._postcardListItem.remove();
     this._postcardListItem = null;
   }
-  // ────────────────────────────────────────────────────────────────────────────
-
-  // ───────── Postcard Like Button Function ────────────────────────────────────
-  // _handleLikeButton = (evt) => {
-  //   evt.target.classList.toggle("postcard__like-button_active");
-  // };
   // ────────────────────────────────────────────────────────────────────────────
 
   _setUserLikes() {
@@ -98,9 +84,6 @@ export default class Card {
   // ─────────── Event Listeners for the Necessary functions ────────────────────
   _setEventListeners() {
     this._likeButton.addEventListener("click", () => this._toggleLikeState());
-
-    // this._likeButton.addEventListener("click", this._handleLikeButton);
-    // this._removeButton.addEventListener("click", this._handleRemoveButton);
 
     this._removeButton.addEventListener("click", () => {
       this._handleRemoveCard({

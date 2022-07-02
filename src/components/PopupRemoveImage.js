@@ -30,7 +30,6 @@ export default class PopupRemoveImage extends Popup {
   }
 
   _setEventListenersSubmit() {
-    // super.setEventListeners();
     this._popup.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this._renderLoadingStatus(true);

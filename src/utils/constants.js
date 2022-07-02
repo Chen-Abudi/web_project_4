@@ -42,6 +42,11 @@ const postcards = document.querySelector(".postcards");
 const postcardsList = postcards.querySelector(".postcards__list");
 const templatePostcardSelector = "#postcard-template";
 // ────────────────────────────────────────────────────────────────────────────
+// Avatar
+const avatar = document.querySelector(".profile__image-overlay");
+const updateAvatarForm = document.querySelector(
+  ".popup__form_type_avatar-update"
+);
 
 // ────────────────────────────────────────────────────────────────────────────
 // Connecting to Practicum's Api
@@ -68,6 +73,8 @@ export {
   imageExModal,
   postcardsList,
   templatePostcardSelector,
+  avatar,
+  updateAvatarForm,
   baseUrl,
   headers,
 };

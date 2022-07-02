@@ -5,6 +5,7 @@ export default class PopupRemoveImage extends Popup {
   constructor({ popupSelector, handleFormSubmit }) {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
+    this._setEventListenersSubmit();
   }
 
   close() {
@@ -15,8 +16,8 @@ export default class PopupRemoveImage extends Popup {
     this._handleFormSubmit = action;
   }
 
-  setEventListeners() {
-    super.setEventListeners();
+  _setEventListenersSubmit() {
+    // super.setEventListeners();
     this._popup.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this._handleFormSubmit();

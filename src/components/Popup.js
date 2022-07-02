@@ -4,6 +4,7 @@ class Popup {
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
     this._closeButton = this._popup.querySelector(".popup__close-button");
+    this._setEventListeners();
   }
   // ────────────────────────────────────────────────────────────────────────────
 
@@ -38,7 +39,7 @@ class Popup {
   // ────────────────────────────────────────────────────────────────────────────
 
   // ──────────── Closing Popup Event Listeners ─────────────────────────────────
-  setEventListeners() {
+  _setEventListeners() {
     this._closeButton.addEventListener("click", () => this.close());
   }
 }

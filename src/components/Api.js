@@ -46,6 +46,18 @@ export default class Api {
     });
   }
 
+  setUserAvatar(link) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: link,
+      }),
+    }).then((res) => {
+      return this._returnRes(res);
+    });
+  }
+
   addCard(data) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",

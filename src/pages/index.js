@@ -9,6 +9,8 @@ import {
   inputCardTitle,
   postcardForm,
   templatePostcardSelector,
+  avatar,
+  updateAvatarForm,
   baseUrl,
   headers,
 } from "../utils/constants.js";
@@ -27,9 +29,11 @@ import allPostcards from "../utils/allPostcards.js";
 
 const profileFormValidator = new FormValidator(config, profileForm);
 const postcardFormValidator = new FormValidator(config, postcardForm);
+const avatarFormValidator = new FormValidator(config, updateAvatarForm);
 
 profileFormValidator.enableValidation();
 postcardFormValidator.enableValidation();
+avatarFormValidator.enableValidation();
 
 // ────────────────────────────────────────────────────────────────────────────
 const api = new Api(baseUrl, headers);
@@ -148,7 +152,7 @@ const addPostcard = new PopupWithForm({
       .catch((err) => console.log(err));
   },
 });
-addPostcard.setEventListeners();
+// addPostcard.setEventListeners();
 // ────────────────────────────────────────────────────────────────────────────
 
 // ───── Edit Profile Modal ───────────────────────────────────────────────────
@@ -164,17 +168,33 @@ const editProfileModal = new PopupWithForm({
       .catch((err) => console.log(err));
   },
 });
-editProfileModal.setEventListeners();
+// editProfileModal.setEventListeners();
 // ────────────────────────────────────────────────────────────────────────────
 
 const imagePopup = new PopupWithImage(".popup_type_image-ex");
-imagePopup.setEventListeners();
+// imagePopup.setEventListeners();
 
 const removeImagePopup = new PopupRemoveImage({
   popupSelector: ".popup_type_remove-postcard",
   // handleFormSubmit: () => {},
 });
-removeImagePopup.setEventListeners();
+// removeImagePopup.setEventListeners();
+// ────────────────────────────────────────────────────────────────────────────
+
+const updateAvatarPopup = new PopupWithForm({
+  popupSelector: ".popup_type_avatar-update",
+  handleFormSubmit: (data) => {
+    api
+      .setUserAvatar(data.link)
+      .then((res) => {
+        updateAvatarPopup.close();
+        newUser.setUserAvatar(res.avatar);
+      })
+      .catch((err) => console.log(err));
+  },
+});
+
+// updateAvatarPopup.setEventListeners();
 
 /* ────────────────────────────────────────────────────────────────────────────
    ------------------- Adding the Necessary Event Listeners: ------------------
@@ -193,5 +213,10 @@ addPostcardButton.addEventListener("click", () => {
   postcardFormValidator.resetValidation();
 
   // postcardForm.reset();
+});
+
+avatar.addEventListener("click", () => {
+  updateAvatarPopup.open();
+  avatarFormValidator.resetValidation();
 });
 // ────────────────────────────────────────────────────────────────────────────

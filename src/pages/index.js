@@ -142,6 +142,7 @@ function reciteCard(data) {
 const addPostcard = new PopupWithForm({
   popupSelector: ".popup_type_add-postcard",
   handleFormSubmit: (data) => {
+    addPostcard.renderLoadingStatus(true, "Creating...");
     api
       .addCard(data)
       .then((data) => {
@@ -149,7 +150,8 @@ const addPostcard = new PopupWithForm({
         cardList.addItem(newPostcard);
         addPostcard.close();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => addPostcard.renderLoadingStatus(false));
   },
 });
 // addPostcard.setEventListeners();
@@ -159,13 +161,15 @@ const addPostcard = new PopupWithForm({
 const editProfileModal = new PopupWithForm({
   popupSelector: ".popup_type_edit-profile",
   handleFormSubmit: (data) => {
+    editProfileModal.renderLoadingStatus(true, "Saving...");
     api
       .setUserInfo({ name: data.username, about: data.userjob })
       .then((data) => {
         newUser.setUserInfo(data.name, data.about);
         editProfileModal.close();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => editProfileModal.renderLoadingStatus(false));
   },
 });
 // editProfileModal.setEventListeners();
@@ -184,13 +188,15 @@ const removeImagePopup = new PopupRemoveImage({
 const updateAvatarPopup = new PopupWithForm({
   popupSelector: ".popup_type_avatar-update",
   handleFormSubmit: (data) => {
+    updateAvatarPopup.renderLoadingStatus(true, "Updating...");
     api
       .setUserAvatar(data.link)
       .then((res) => {
         updateAvatarPopup.close();
         newUser.setUserAvatar(res.avatar);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => updateAvatarPopup.renderLoadingStatus(false));
   },
 });
 

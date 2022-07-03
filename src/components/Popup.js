@@ -16,6 +16,7 @@ class Popup {
   };
   // ────────────────────────────────────────────────────────────────────────────
 
+  // ─────────────── POPUP Windows Closing from the Overlay ─────────────────────
   _handleOverlayClose = (evt) => {
     if (evt.target.classList.contains("popup")) {
       this.close();

@@ -14,14 +14,14 @@ export default class PopupRemoveImage extends Popup {
 
   close() {
     super.close();
-    this._renderLoadingStatus(false);
   }
 
   setSubmitAction(action) {
     this._handleFormSubmit = action;
   }
 
-  _renderLoadingStatus(isItLoading) {
+  // Shows user loading text while request is pending
+  renderLoadingStatus(isItLoading) {
     if (isItLoading) {
       this._submitButton.textContent = "Removing...";
     } else {
@@ -32,8 +32,6 @@ export default class PopupRemoveImage extends Popup {
   _setEventListenersSubmit() {
     this._popup.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      this._renderLoadingStatus(true);
-
       this._handleFormSubmit();
     });
   }

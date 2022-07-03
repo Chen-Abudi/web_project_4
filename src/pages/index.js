@@ -23,7 +23,7 @@ import UserInfo from "../components/UserInfo.js";
 import Section from "../components/Section.js";
 import FormValidator from "../components/FormValidator.js";
 
-import Api from "../components/Api.js";
+import Api from "../utils/Api.js";
 
 const profileFormValidator = new FormValidator(config, profileForm);
 const postcardFormValidator = new FormValidator(config, postcardForm);
@@ -37,7 +37,7 @@ avatarFormValidator.enableValidation();
 const api = new Api(baseUrl, headers);
 
 // An Instant of User Info
-const newUser = new UserInfo({
+const userInfo = new UserInfo({
   userNameSelector: ".profile__name",
   userJobSelector: ".profile__description",
   userAvatarSelector: ".profile__image",
@@ -57,12 +57,12 @@ const cardList = new Section(
    ──────────────────────────────────────────────────────────────────────────── */
 Promise.all([api.getUserInfo(), api.getInitialcards()])
   .then(([userData, cardsData]) => {
-    newUser.setUserInfo(userData.name, userData.about);
-    newUser.setUserAvatar(userData.avatar);
-    newUser.setUserId(userData._id);
+    userInfo.setUserInfo(userData.name, userData.about);
+    userInfo.setUserAvatar(userData.avatar);
+    userInfo.setUserId(userData._id);
     cardList.render(cardsData);
+    userInfo.setAvatarSight();
   })
-  .then(() => newUser.setAvatarSight())
   .catch((err) => console.log(err));
 // ────────────────────────────────────────────────────────────────────────────
 
@@ -79,22 +79,26 @@ function createCard(data) {
         removeImagePopup.open();
 
         removeImagePopup.setSubmitAction(() => {
+          removeImagePopup.renderLoadingStatus(true);
           api
             .removeCard(id)
             .then((res) => {
               console.log("postcard is removed", res);
-              card.setRemoveCard();
-            })
-            .then(() => {
+              card.removeCard();
               console.log("postcard was removed by the server");
               removeImagePopup.close();
             })
-            .catch((err) => console.log(err));
+            .catch((err) => console.log(err))
+            .finally(() => removeImagePopup.renderLoadingStatus(false));
         });
       },
-      handleLikeCard: (cardId, isItLiked) => api.cardLike(cardId, isItLiked),
+      handleLikeCard: () =>
+        api
+          .cardLike(data._id, card.isLiked())
+          .then((res) => card.updateLikes(res.likes))
+          .catch((err) => console.log(err)),
     },
-    newUser.getUserId()
+    userInfo.getUserId()
   );
   return card.generateCard();
 }
@@ -103,7 +107,7 @@ function createCard(data) {
 // Reciting the Postcard on the Page
 function reciteCard(data) {
   const postcard = createCard(data);
-  cardList.setItem(postcard);
+  cardList.appendItem(postcard);
 }
 // ────────────────────────────────────────────────────────────────────────────
 
@@ -133,7 +137,7 @@ const editProfileModal = new PopupWithForm({
     api
       .setUserInfo({ name: data.username, about: data.userjob })
       .then((data) => {
-        newUser.setUserInfo(data.name, data.about);
+        userInfo.setUserInfo(data.name, data.about);
         editProfileModal.close();
       })
       .catch((err) => console.log(err))
@@ -157,22 +161,24 @@ const updateAvatarPopup = new PopupWithForm({
       .setUserAvatar(data.link)
       .then((res) => {
         updateAvatarPopup.close();
-        newUser.setUserAvatar(res.avatar);
+        userInfo.setUserAvatar(res.avatar);
       })
       .catch((err) => console.log(err))
       .finally(() => updateAvatarPopup.renderLoadingStatus(false));
   },
 });
 // ────────────────────────────────────────────────────────────────────────────
+function fillProfileForm() {
+  const { userName, userJob } = userInfo.getUserInfo();
+  inputCardName.value = userName;
+  inputCardTitle.value = userJob;
+}
 
 /* ────────────────────────────────────────────────────────────────────────────
    ------------------- Adding the Necessary Event Listeners: ------------------
    ──────────────────────────────────────────────────────────────────────────── */
 editProfileButton.addEventListener("click", () => {
-  const { userName, userJob } = newUser.getUserInfo();
-  inputCardName.value = userName;
-  inputCardTitle.value = userJob;
-
+  fillProfileForm();
   profileFormValidator.resetValidation();
   editProfileModal.open();
 });

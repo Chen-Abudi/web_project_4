@@ -23,7 +23,6 @@ export default class UserInfo {
   setUserId(userId) {
     this._userId = userId;
   }
-
   // ───────────────────────────────────────────────────────────────────
 
   setUserAvatar(avatar) {
@@ -36,8 +35,8 @@ export default class UserInfo {
   // ───────────────────────────────────────────────────────────────────
 
   // ────── Adding New User Data to Page ───────────────────────────────
-  setUserInfo(username, userjob) {
-    this._userNameElement.textContent = username;
-    this._userJobElement.textContent = userjob;
+  setUserInfo(userName, userJob) {
+    this._userNameElement.textContent = userName;
+    this._userJobElement.textContent = userJob;
   }
 }

@@ -31,7 +31,7 @@ export default class Card {
   // ────────────────────────────────────────────────────────────────────────────
 
   // Postcard and its attributes
-  _cardAttributes() {
+  _setCardElements() {
     this._title = this._postcardListItem.querySelector(".postcard__title");
     this._img = this._postcardListItem.querySelector(".postcard__image");
     this._likeButton = this._postcardListItem.querySelector(
@@ -46,44 +46,49 @@ export default class Card {
   }
   // ────────────────────────────────────────────────────────────────────────────
 
-  // Modify the Like Button activity
-  _toggleLikeState() {
-    this._handleLikeCard(
-      this._cardId,
-      this._likes.some((like) => like._id === this._userId)
-    )
-      .then((res) => {
-        this._likeButton.classList.toggle("postcard__like-button_active");
-        this._likes = res.likes;
-        this._likeButtonCounter.textContent = this._likes.length;
-      })
-      .catch((err) => console.log(err));
-  }
-  // ────────────────────────────────────────────────────────────────────────────
-
   // Shows the Likes Quantity
-  _getLikesQuantity() {
+  _setLikesQuantity() {
     this._likeButtonCounter.textContent = this._likes.length;
   }
   // ────────────────────────────────────────────────────────────────────────────
 
   // ────────── Postcard Remove Button Function ─────────────────────────────────
-  setRemoveCard() {
+  removeCard() {
     this._postcardListItem.remove();
     this._postcardListItem = null;
   }
   // ────────────────────────────────────────────────────────────────────────────
 
+  updateLikes(likes) {
+    this._likes = likes;
+    this._renderLikes();
+  }
+  // ────────────────────────────────────────────────────────────────────────────
+
+  // It returns True if user liked the card otherwise False
+  isLiked() {
+    return this._likes.some((like) => like._id === this._userId);
+  }
+  // ────────────────────────────────────────────────────────────────────────────
+
+  _renderLikes() {
+    this._setLikesQuantity();
+    this._setUserLikes();
+  }
+  // ────────────────────────────────────────────────────────────────────────────
+
   _setUserLikes() {
-    if (this._likes.some((like) => like._id === this._userId)) {
+    if (this.isLiked()) {
       this._likeButton.classList.add("postcard__like-button_active");
+    } else {
+      this._likeButton.classList.remove("postcard__like-button_active");
     }
   }
   // ────────────────────────────────────────────────────────────────────────────
 
   // ─────────── Event Listeners for the Necessary functions ────────────────────
   _setEventListeners() {
-    this._likeButton.addEventListener("click", () => this._toggleLikeState());
+    this._likeButton.addEventListener("click", () => this._handleLikeCard());
 
     this._removeButton.addEventListener("click", () => {
       this._handleRemoveCard({
@@ -102,16 +107,17 @@ export default class Card {
      ──────────────────────────────────────────────────────────────────────────── */
   generateCard() {
     this._postcardListItem = this._getTemplate();
-    this._cardAttributes();
-    this._setUserLikes();
-    this._getLikesQuantity();
+    this._setCardElements();
+
+    this._renderLikes(this._likes);
 
     this._title.textContent = this._name;
     this._img.src = this._link;
     this._img.alt = `A colorful and magnificent view of ${this._name}`;
 
-    this._ownerId !== this._userId &&
-      (this._removeButton.style.display = "none");
+    if (this._ownerId !== this._userId) {
+      this._removeButton.style.display = "none";
+    }
 
     this._setEventListeners();
 

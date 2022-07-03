@@ -30,7 +30,7 @@ export default class PopupWithForm extends Popup {
     return inputValues;
   }
   // ─────────────────────────────────────────────────────────────────────────────
-
+  // Shows user loading text while request is pending
   renderLoadingStatus(isItLoading, loadText = "Saving...") {
     if (isItLoading) {
       this._submitButton.textContent = loadText;
@@ -38,6 +38,7 @@ export default class PopupWithForm extends Popup {
       this._submitButton.textContent = this._submitButtonText;
     }
   }
+  // ─────────────────────────────────────────────────────────────────────────────
 
   /* ───── Event Listeners with ──────────────────────────────────────────────────
      ───── Form Event Handler and Close icon Event Listener ────────────────────── */

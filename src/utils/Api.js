@@ -4,7 +4,7 @@ export default class Api {
     this._headers = headers;
   }
 
-  _returnRes(res) {
+  _processResponse(res) {
     if (res.ok) {
       return res.json();
     } else {
@@ -16,18 +16,14 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards`, {
       method: "GET",
       headers: this._headers,
-    }).then((res) => {
-      return this._returnRes(res);
-    });
+    }).then(this._processResponse);
   }
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
       headers: this._headers,
-    }).then((res) => {
-      return this._returnRes(res);
-    });
+    }).then(this._processResponse);
   }
 
   setUserInfo({ name, about }) {
@@ -38,9 +34,7 @@ export default class Api {
         name: name,
         about: about,
       }),
-    }).then((res) => {
-      return this._returnRes(res);
-    });
+    }).then(this._processResponse);
   }
 
   setUserAvatar(link) {
@@ -50,9 +44,7 @@ export default class Api {
       body: JSON.stringify({
         avatar: link,
       }),
-    }).then((res) => {
-      return this._returnRes(res);
-    });
+    }).then(this._processResponse);
   }
 
   addCard(data) {
@@ -60,28 +52,21 @@ export default class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify(data),
-    }).then((res) => {
-      return this._returnRes(res);
-    });
+    }).then(this._processResponse);
   }
 
   removeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
-    }).then((res) => {
-      return this._returnRes(res);
-    });
+    }).then(this._processResponse);
   }
 
   cardLike(cardId, isItLiked) {
-    let method;
-    isItLiked ? (method = "DELETE") : (method = "PUT");
+    const method = isItLiked ? "DELETE" : "PUT";
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
       method: method,
       headers: this._headers,
-    }).then((res) => {
-      return this._returnRes(res);
-    });
+    }).then(this._processResponse);
   }
 }
